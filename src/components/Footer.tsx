@@ -4,7 +4,7 @@ export const Footer = () => {
   const { colors } = useTheme();
   const FooterStyle = {
     backgroundColor: colors.textMenuItems,
-    width: "100vw",
+    width: "100%",
     height: "5.375rem",
     display: "flex",
     bottom: "0",

@@ -2,11 +2,18 @@ import { Navigation } from "./Navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CityCard } from "./CityCard";
+import { AccommodationCard } from "./AccommodationCard";
 
 export const Main = () => {
   const CityCardData = {
     name: "London",
     count: "5102",
+  };
+  const AccommodationCardData = {
+    title: "Sugar & Spice Apartments",
+    location: "Split",
+    price: 75,
+    categorization: 3,
   };
   const data = [
     {
@@ -51,6 +58,12 @@ export const Main = () => {
       <Navigation />
       <Header />
       <CityCard city={CityCardData.name} count={CityCardData.count} />
+      <AccommodationCard
+        title={AccommodationCardData.title}
+        location={AccommodationCardData.location}
+        price={AccommodationCardData.price}
+        categorization={AccommodationCardData.categorization}
+      />
       <Footer />
     </div>
   );
