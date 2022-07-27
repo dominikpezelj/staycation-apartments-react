@@ -9,7 +9,8 @@ export const theme = createTheme({
         inputGray: '#909090',
         mint: '#40E0D0',
         bgFooter: '#1A3440',
-        cardGray: '#ADADAD'
+        cardGray: '#ADADAD',
+        errorRed: '#EF6B6B'
     },
     shadow: {
       main: '0px 4px 4px rgba(205, 205, 205, 0.25)'
@@ -27,6 +28,7 @@ export const theme = createTheme({
             mint: string;
             bgFooter: string;
             cardGray: string;
+            errorRed: string;
       },
       shadow: {
         main: React.CSSProperties['boxShadow'];
@@ -42,6 +44,7 @@ export const theme = createTheme({
             mint: string;
             bgFooter: string;
             cardGray: string;
+            errorRed: string;
       };
       shadow: {
         main: React.CSSProperties['boxShadow'];

@@ -32,7 +32,7 @@ export const AccommodationCard: React.FC<{
           }}
           component="img"
           image="/accommodation-card.png"
-          alt="green iguana"
+          alt=""
         />
         <CardContent>
           <Typography
