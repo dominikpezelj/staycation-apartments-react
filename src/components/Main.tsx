@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { CityCard } from "./CityCard";
 import { AccommodationCard } from "./AccommodationCard";
 import { PlaceCard } from "./PlaceCard";
+import { AccommodationInfo } from "./AccommodationInfo";
 
 export const Main = () => {
   const cityCardData = {
@@ -83,6 +84,7 @@ export const Main = () => {
         location={placeCardData[0].location}
         subtitle={placeCardData[0].subtitle}
       />
+      <AccommodationInfo />
       <Footer />
     </div>
   );

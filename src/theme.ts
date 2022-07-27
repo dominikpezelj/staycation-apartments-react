@@ -8,8 +8,10 @@ export const theme = createTheme({
         textMenuItems: '#1A3440',
         inputGray: '#909090',
         mint: '#40E0D0',
+        mint50: '#F2FDFC',
         bgFooter: '#1A3440',
         cardGray: '#ADADAD',
+        gray500: '#7C7C7C',
         errorRed: '#EF6B6B'
     },
     shadow: {
@@ -26,9 +28,11 @@ export const theme = createTheme({
             textMenuItems: string;
             inputGray: string;
             mint: string;
+            mint50: string;
             bgFooter: string;
             cardGray: string;
             errorRed: string;
+            gray500: string;
       },
       shadow: {
         main: React.CSSProperties['boxShadow'];
@@ -42,9 +46,11 @@ export const theme = createTheme({
             textMenuItems: string;
             inputGray: string;
             mint: string;
+            mint50: string;
             bgFooter: string;
             cardGray: string;
             errorRed: string;
+            gray500: string;
       };
       shadow: {
         main: React.CSSProperties['boxShadow'];
