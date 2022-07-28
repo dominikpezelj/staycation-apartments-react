@@ -1,10 +1,21 @@
-import { Card, Typography, Grid, Stack, Button } from "@mui/material";
+import { Typography, Grid, Stack, Button, Box, Paper } from "@mui/material";
 import HeaderImage from "../assets/images/accommodation-info.jpg";
 import Star from "../assets/images/Vector.svg";
 import Calendar from "../assets/images/calendar.svg";
-
 import { useTheme } from "@mui/material/styles";
-export const AccommodationInfo = () => {
+
+export const AccommodationInfo: React.FC<{
+  title: string;
+  subtitle: string;
+  type: string;
+  categorization: number;
+  personCount: number;
+  imageUrl: string;
+  freeCancelation: boolean;
+  price: number;
+  location: string;
+  postalCode: string;
+}> = (props) => {
   const { colors, shadow } = useTheme();
 
   const BackgroundStyle = {
@@ -32,8 +43,11 @@ export const AccommodationInfo = () => {
     padding: "1rem",
   };
 
+  const cancelation = props.freeCancelation
+    ? "Free cancellation available"
+    : "Free cancellation is not available";
   return (
-    <div style={container}>
+    <Box style={container}>
       <img style={BackgroundStyle}></img>
       <Grid container spacing={4} sx={{ marginTop: "0.5rem" }}>
         <Grid item xs={8}>
@@ -46,14 +60,14 @@ export const AccommodationInfo = () => {
                 color: colors.textBlack,
               }}
             >
-              Poseidon Hotel Suites
+              {props.title}
             </Typography>
             <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-              <div style={stars}></div>
-              <div style={stars}></div>
-              <div style={stars}></div>
-              <div style={stars}></div>
-              <div style={stars}></div>
+              <Box style={stars}></Box>
+              <Box style={stars}></Box>
+              <Box style={stars}></Box>
+              <Box style={stars}></Box>
+              <Box style={stars}></Box>
             </Stack>
           </Stack>
           <Typography
@@ -65,14 +79,14 @@ export const AccommodationInfo = () => {
               marginTop: "1rem",
             }}
           >
-            Stay in the heart of Mýkonos City
+            {props.subtitle}
           </Typography>
           <Stack
             direction="row"
             spacing={1}
             sx={{ marginTop: "3rem", marginBottom: "3rem" }}
           >
-            <div style={calendarIcon}></div>
+            <Box style={calendarIcon}></Box>
             <Typography
               sx={{
                 fontFamily: "Roboto",
@@ -82,7 +96,7 @@ export const AccommodationInfo = () => {
                 alignItems: "center",
               }}
             >
-              Free cancellation available
+              {cancelation}
             </Typography>
           </Stack>
           <Typography
@@ -115,13 +129,15 @@ export const AccommodationInfo = () => {
             for a two-person trip.
           </Typography>
         </Grid>
-        <Grid item xs={4}>
-          <Card
+        <Grid item xs={4} sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Paper
             sx={{
               padding: "1.5rem",
               backgroundColor: colors.mint50,
               boxShadow: shadow.main,
               borderRadius: "10px",
+              height: "18rem",
+              width: "15.625rem",
             }}
           >
             <Typography
@@ -142,24 +158,30 @@ export const AccommodationInfo = () => {
                 fontWeight: "400",
                 fontSize: "16px",
                 color: colors.textMenuItems,
-                marginBottom: "2rem",
+                marginBottom: "3rem",
               }}
             >
-              <Typography>2 guests</Typography>
-              <Typography>Room</Typography>
-              <Typography>EUR 500 per night</Typography>
-              <Typography>Mykonos City</Typography>
-              <Typography>846 00</Typography>
+              <Typography>{props.personCount} guests</Typography>
+              <Typography>{props.type}</Typography>
+              <Typography>EUR {props.price} per night</Typography>
+              <Typography>{props.location}</Typography>
+              <Typography>{props.postalCode}</Typography>
             </Stack>
             <Button
               variant="contained"
-              sx={{ backgroundColor: colors.mint, width: "100%" }}
+              sx={{
+                backgroundColor: colors.mint,
+                width: "100%",
+                fontWeight: "500",
+                fontSize: "15px",
+                lineHeight: "26px",
+              }}
             >
               Book your stay
             </Button>
-          </Card>
+          </Paper>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
