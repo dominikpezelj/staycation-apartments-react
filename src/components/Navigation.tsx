@@ -1,10 +1,11 @@
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  MenuItem,
+  Button,
+  Stack,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 export const Navigation = () => {

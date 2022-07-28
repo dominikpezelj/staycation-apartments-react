@@ -1,6 +1,5 @@
+import React, { CSSProperties } from "react";
 import CardImage from "../assets/images/city-card.jpg";
-import React from "react";
-import { CSSProperties } from "react";
 import { useTheme } from "@mui/material/styles";
 export const CityCard: React.FC<{ city: string; count: string }> = (props) => {
   const { colors } = useTheme();

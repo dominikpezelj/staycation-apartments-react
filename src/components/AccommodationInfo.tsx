@@ -1,12 +1,9 @@
-import { Container } from "@mui/system";
+import { Card, Typography, Grid, Stack, Button } from "@mui/material";
 import HeaderImage from "../assets/images/accommodation-info.jpg";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Star from "../assets/images/Vector.svg";
 import Calendar from "../assets/images/calendar.svg";
-import { Card, Typography } from "@mui/material";
+
 import { useTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 export const AccommodationInfo = () => {
   const { colors, shadow } = useTheme();
 
@@ -35,7 +32,6 @@ export const AccommodationInfo = () => {
     padding: "1rem",
   };
 
-  const Heading = {};
   return (
     <div style={container}>
       <img style={BackgroundStyle}></img>
