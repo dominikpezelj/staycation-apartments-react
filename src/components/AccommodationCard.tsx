@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Card,
   CardContent,
@@ -10,12 +9,19 @@ import {
 import { useTheme } from "@mui/material/styles";
 import Star from "../assets/images/Vector.svg";
 
-export const AccommodationCard: React.FC<{
+type AccommodationCardProps = {
   title: string;
   location: string;
   price: number;
   categorization: number;
-}> = (props) => {
+};
+
+export const AccommodationCard = ({
+  title,
+  location,
+  price,
+  categorization,
+}: AccommodationCardProps): JSX.Element => {
   const { colors } = useTheme();
   const stars = {
     backgroundImage: `url(${Star})`,
@@ -47,7 +53,7 @@ export const AccommodationCard: React.FC<{
               marginBottom: "0.5rem",
             }}
           >
-            {props.title}
+            {title}
           </Typography>
           <Typography
             component="div"
@@ -59,7 +65,7 @@ export const AccommodationCard: React.FC<{
               marginBottom: "0.5rem",
             }}
           >
-            {props.location}
+            {location}
           </Typography>
           <Typography
             component="div"
@@ -71,7 +77,7 @@ export const AccommodationCard: React.FC<{
               marginBottom: "0.5rem",
             }}
           >
-            EUR {props.price}
+            EUR {price}
           </Typography>
           <Stack direction="row" spacing={1}>
             <div style={stars}></div>

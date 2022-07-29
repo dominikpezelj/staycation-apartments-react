@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Card,
   CardActions,
@@ -9,11 +8,17 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const PlaceCard: React.FC<{
+type PlaceCardProps = {
   title: string;
   location: string;
   subtitle: string;
-}> = (props) => {
+};
+
+export const PlaceCard = ({
+  title,
+  location,
+  subtitle,
+}: PlaceCardProps): JSX.Element => {
   const { colors } = useTheme();
   return (
     <Card sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}>
@@ -38,7 +43,7 @@ export const PlaceCard: React.FC<{
             marginBottom: "0.5rem",
           }}
         >
-          {props.title}
+          {title}
         </Typography>
         <Typography
           component="div"
@@ -50,7 +55,7 @@ export const PlaceCard: React.FC<{
             marginBottom: "0.5rem",
           }}
         >
-          {props.location}
+          {location}
         </Typography>
         <Typography
           component="div"
@@ -62,7 +67,7 @@ export const PlaceCard: React.FC<{
             marginBottom: "0.5rem",
           }}
         >
-          {props.subtitle}
+          {subtitle}
         </Typography>
       </CardContent>
       <CardActions>

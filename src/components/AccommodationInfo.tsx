@@ -4,9 +4,10 @@ import Star from "../assets/images/Vector.svg";
 import Calendar from "../assets/images/calendar.svg";
 import { useTheme } from "@mui/material/styles";
 
-export const AccommodationInfo: React.FC<{
+type dataProps = {
   title: string;
   subtitle: string;
+  description: string;
   type: string;
   categorization: number;
   personCount: number;
@@ -15,7 +16,15 @@ export const AccommodationInfo: React.FC<{
   price: number;
   location: string;
   postalCode: string;
-}> = (props) => {
+};
+
+type AccommodationInfoProps = {
+  data: dataProps;
+};
+
+export const AccommodationInfo = ({
+  data,
+}: AccommodationInfoProps): JSX.Element => {
   const { colors, shadow } = useTheme();
 
   const BackgroundStyle = {
@@ -43,7 +52,7 @@ export const AccommodationInfo: React.FC<{
     padding: "1rem",
   };
 
-  const cancelation = props.freeCancelation
+  const cancelation = data.freeCancelation
     ? "Free cancellation available"
     : "Free cancellation is not available";
   return (
@@ -60,7 +69,7 @@ export const AccommodationInfo: React.FC<{
                 color: colors.textBlack,
               }}
             >
-              {props.title}
+              {data.title}
             </Typography>
             <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
               <Box style={stars}></Box>
@@ -79,7 +88,7 @@ export const AccommodationInfo: React.FC<{
               marginTop: "1rem",
             }}
           >
-            {props.subtitle}
+            {data.subtitle}
           </Typography>
           <Stack
             direction="row"
@@ -161,11 +170,11 @@ export const AccommodationInfo: React.FC<{
                 marginBottom: "3rem",
               }}
             >
-              <Typography>{props.personCount} guests</Typography>
-              <Typography>{props.type}</Typography>
-              <Typography>EUR {props.price} per night</Typography>
-              <Typography>{props.location}</Typography>
-              <Typography>{props.postalCode}</Typography>
+              <Typography>{data.personCount} guests</Typography>
+              <Typography>{data.type}</Typography>
+              <Typography>EUR {data.price} per night</Typography>
+              <Typography>{data.location}</Typography>
+              <Typography>{data.postalCode}</Typography>
             </Stack>
             <Button
               variant="contained"
