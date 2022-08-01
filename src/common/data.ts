@@ -1,14 +1,53 @@
 
-const cityCardData = {
+const cityCardData = [
+  {
+    name: "New York",
+    count: 1381,
+  },
+  {
+    name: "Rome",
+    count: 14098,
+  },
+  {
     name: "London",
     count: 5102,
-  };
-  const accommodationCardData = {
+  },
+  {
+    name: "Tokyo",
+    count: 11251,
+  },
+  {
+    name: "Barcelona",
+    count: 21104,
+  }
+]
+  const accommodationCardData = [
+    {
     title: "Sugar & Spice Apartments",
     location: "Split",
     price: 75,
     categorization: 3,
-  };
+  },
+  {
+    title: "Lemon Luxury Apartments",
+    location: "Saint Tropez",
+    price: 174,
+    categorization: 5,
+  },
+  {
+    title: "Casa Krystal",
+    location: "Cancun",
+    price: 123,
+    categorization: 4,
+  },
+  {
+    title: "Phuket Kamala Beach Hotel",
+    location: "Phuket",
+    price: 55,
+    categorization: 3,
+  },
+
+]
   const placeCardData = [
     {
       title: "Treehouse",

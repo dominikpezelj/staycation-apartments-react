@@ -1,4 +1,4 @@
-import { Navigation } from "./Navigation";
+/* import { Navigation } from "./Navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CityCard } from "./CityCard";
@@ -36,3 +36,5 @@ export const Main = (): JSX.Element => {
     </div>
   );
 };
+ */
+export {};

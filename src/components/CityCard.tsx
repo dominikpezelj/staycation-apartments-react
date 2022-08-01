@@ -2,18 +2,40 @@ import { CSSProperties } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CardImage from "../assets/images/city-card.jpg";
+import NewYork from "../assets/images/cities/newyork.jpg";
+import Barcelona from "../assets/images/cities/barcelona.jpg";
+import London from "../assets/images/cities/london.jpg";
+import Rome from "../assets/images/cities/rome.jpg";
+import Tokyo from "../assets/images/cities/tokyo.jpg";
 
-type CityCardProps = { city: string; count: number };
+type CityCardProps = { city: string; count: number; width: string };
 
-export const CityCard = ({ city, count }: CityCardProps): JSX.Element => {
+export const CityCard = ({
+  city,
+  count,
+  width,
+}: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
+
+  const backgroundImage =
+    city == "New York"
+      ? NewYork
+      : city == "Barcelona"
+      ? Barcelona
+      : city == "London"
+      ? London
+      : city == "Rome"
+      ? Rome
+      : city == "Tokyo"
+      ? Tokyo
+      : London;
 
   const CityCardBg: CSSProperties = {
     position: "relative",
-    backgroundImage: `url(${CardImage})`,
+    backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: "no-repeat",
     height: "295px",
-    width: "25.25rem",
+    width: width == "md" ? "38.625rem" : "25.25rem",
     borderRadius: "12px",
   };
   const CityCardBg2 = {
@@ -22,7 +44,7 @@ export const CityCard = ({ city, count }: CityCardProps): JSX.Element => {
     backgroundRepeat: "no-repeat",
     height: "295px",
     borderRadius: "12px",
-    width: "25.25rem",
+    width: width == "md" ? "38.625rem" : "25.25rem",
   };
 
   const CityCardText: CSSProperties = {
