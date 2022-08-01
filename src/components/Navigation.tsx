@@ -6,6 +6,7 @@ import {
   Button,
   Stack,
 } from "@mui/material";
+import { appName, menuItems } from "../common/constants";
 import { useTheme } from "@mui/material/styles";
 
 export const Navigation = () => {
@@ -16,8 +17,6 @@ export const Navigation = () => {
     boxShadow: shadow.main,
     padding: "0px 76px",
   };
-
-  const menuItems = [" Locations", "My Places", "My Bookings"];
 
   return (
     <AppBar style={appBarClass}>
@@ -32,7 +31,7 @@ export const Navigation = () => {
             fontSize: "20px",
           }}
         >
-          Staycation
+          {appName}
         </Typography>
         <Stack direction="row" spacing={1}>
           {menuItems.map((item) => (
@@ -42,6 +41,7 @@ export const Navigation = () => {
                 fontWeight: "400",
                 fontSize: "16px",
               }}
+              key={item}
             >
               <Typography
                 textAlign="center"

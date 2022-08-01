@@ -5,12 +5,13 @@ import { CityCard } from "./CityCard";
 import { AccommodationCard } from "./AccommodationCard";
 import { PlaceCard } from "./PlaceCard";
 import { AccommodationInfo } from "./AccommodationInfo";
+import { Rating } from "./Rating";
 import {
   cityCardData,
   accommodationCardData,
   placeCardData,
   AccommodationInfoData,
-} from "../data/data.js";
+} from "../common/data";
 
 export const Main = (): JSX.Element => {
   return (
@@ -30,6 +31,7 @@ export const Main = (): JSX.Element => {
         subtitle={placeCardData[0].subtitle}
       />
       <AccommodationInfo data={AccommodationInfoData} />
+      <Rating categorization={3} />
       <Footer />
     </div>
   );

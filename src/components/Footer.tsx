@@ -1,4 +1,6 @@
+import { appName } from "../common/constants";
 import { useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 export const Footer = () => {
   const { colors } = useTheme();
@@ -20,8 +22,8 @@ export const Footer = () => {
     display: "flex",
   };
   return (
-    <div style={FooterStyle}>
-      <div style={FooterTitle}>Staycation</div>
-    </div>
+    <Box style={FooterStyle}>
+      <Box style={FooterTitle}>{appName}</Box>
+    </Box>
   );
 };

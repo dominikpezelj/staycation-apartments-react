@@ -1,7 +1,7 @@
 
 const cityCardData = {
     name: "London",
-    count: "5102",
+    count: 5102,
   };
   const accommodationCardData = {
     title: "Sugar & Spice Apartments",

@@ -4,10 +4,9 @@ import {
   CardMedia,
   Typography,
   CardActionArea,
-  Stack,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Star from "../assets/images/Vector.svg";
+import { Rating } from "./Rating";
 
 type AccommodationCardProps = {
   title: string;
@@ -23,11 +22,6 @@ export const AccommodationCard = ({
   categorization,
 }: AccommodationCardProps): JSX.Element => {
   const { colors } = useTheme();
-  const stars = {
-    backgroundImage: `url(${Star})`,
-    width: "20px",
-    height: "19px",
-  };
 
   return (
     <Card sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}>
@@ -79,13 +73,7 @@ export const AccommodationCard = ({
           >
             EUR {price}
           </Typography>
-          <Stack direction="row" spacing={1}>
-            <div style={stars}></div>
-            <div style={stars}></div>
-            <div style={stars}></div>
-            <div style={stars}></div>
-            <div style={stars}></div>
-          </Stack>
+          <Rating categorization={categorization} />
         </CardContent>
       </CardActionArea>
     </Card>

@@ -1,8 +1,9 @@
-import React, { CSSProperties } from "react";
-import CardImage from "../assets/images/city-card.jpg";
+import { CSSProperties } from "react";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import CardImage from "../assets/images/city-card.jpg";
 
-type CityCardProps = { city: string; count: string };
+type CityCardProps = { city: string; count: number };
 
 export const CityCard = ({ city, count }: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
@@ -50,12 +51,12 @@ export const CityCard = ({ city, count }: CityCardProps): JSX.Element => {
     lineHeight: "24px",
   };
 
-  let formatCount = Number(count).toLocaleString();
+  let formatCount = count.toLocaleString();
   return (
-    <div style={CityCardBg}>
-      <div style={CityCardBg2}></div>
-      <div style={CityCardText}>{city}</div>
-      <div style={CityCardTextSm}>{formatCount} properties</div>
-    </div>
+    <Box style={CityCardBg}>
+      <Box style={CityCardBg2}></Box>
+      <Box style={CityCardText}>{city}</Box>
+      <Box style={CityCardTextSm}>{formatCount} properties</Box>
+    </Box>
   );
 };

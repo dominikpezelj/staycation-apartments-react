@@ -1,8 +1,8 @@
 import { Typography, Grid, Stack, Button, Box, Paper } from "@mui/material";
 import HeaderImage from "../assets/images/accommodation-info.jpg";
-import Star from "../assets/images/Vector.svg";
 import Calendar from "../assets/images/calendar.svg";
 import { useTheme } from "@mui/material/styles";
+import { Rating } from "./Rating";
 
 type dataProps = {
   title: string;
@@ -38,11 +38,6 @@ export const AccommodationInfo = ({
     borderRadius: "20px",
   };
 
-  const stars = {
-    backgroundImage: `url(${Star})`,
-    width: "20px",
-    height: "19px",
-  };
   const calendarIcon = {
     backgroundImage: `url(${Calendar})`,
     width: "23.33px",
@@ -71,13 +66,7 @@ export const AccommodationInfo = ({
             >
               {data.title}
             </Typography>
-            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-              <Box style={stars}></Box>
-              <Box style={stars}></Box>
-              <Box style={stars}></Box>
-              <Box style={stars}></Box>
-              <Box style={stars}></Box>
-            </Stack>
+            <Rating categorization={data.categorization} />
           </Stack>
           <Typography
             sx={{
@@ -118,24 +107,7 @@ export const AccommodationInfo = ({
               maxWidth: "810px",
             }}
           >
-            This property is 3 minutes walk from the beach. Overlooking Mykonos
-            Windmills, the Poseidon Hotel Suites is only 50 m from Megali Ammos
-            Beach. The 3-star hotel offers a freshwater pool, and bright rooms
-            with air conditioning and fan. Each of the Cycladic rooms opens to a
-            private balcony with across to Mykonos Town, the sea and Delos. A
-            fridge, satellite TV and safe are standard. Free two-way transfer
-            from the airport or port is offered. Poseidon provides free Wi-Fi in
-            public areas, and on-site parking is also free. Guests can hire
-            Poseidon’s motor yacht and discover the magnificent beaches of
-            Mykonos. At the breakfast room and its cool patio, guests can taste
-            homemade local delicacies, fresh fruit and good quality coffee. The
-            Alley Bay serves exclusive cocktails, a few steps from the Poseidon.
-            The Poseidon is just 200 m from the famous Mykonos Windmills. Right
-            next to the hotel, guests will find small sandy coves and a pathway
-            that leads to the picturesque chapel of Agios Charalambis. This is
-            our guests' favourite part of Mýkonos City, according to independent
-            reviews. Couples particularly like the location — they rated it 9.6
-            for a two-person trip.
+            {data.description}
           </Typography>
         </Grid>
         <Grid item xs={4} sx={{ display: "flex", justifyContent: "flex-end" }}>

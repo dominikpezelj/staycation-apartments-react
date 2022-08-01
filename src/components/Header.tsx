@@ -1,6 +1,6 @@
-import Stack from "@mui/material/Stack";
-import HeaderImage from "../assets/images/header-bg.jpg";
+import { Typography, Box, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import HeaderImage from "../assets/images/header-bg.jpg";
 
 export const Header = () => {
   const { colors } = useTheme();
@@ -46,8 +46,8 @@ export const Header = () => {
   };
 
   return (
-    <div style={BackgroundStyle}>
-      <div style={BackgroundStyle2}></div>
+    <Box style={BackgroundStyle}>
+      <Box style={BackgroundStyle2}></Box>
       <Stack
         spacing={2}
         sx={{
@@ -57,10 +57,14 @@ export const Header = () => {
           marginTop: "9rem",
         }}
       >
-        <div style={HeaderText1}>Enjoy your travels</div>
-        <div style={HeaderText2}>with Staycation and collect rewards</div>
-        <div style={HeaderText3}>Book now & save 10% or more today</div>
+        <Typography style={HeaderText1}>Enjoy your travels</Typography>
+        <Typography style={HeaderText2}>
+          with Staycation and collect rewards
+        </Typography>
+        <Typography style={HeaderText3}>
+          Book now & save 10% or more today
+        </Typography>
       </Stack>
-    </div>
+    </Box>
   );
 };
