@@ -8,18 +8,18 @@ import {
   AccommodationCard,
   AccommodationSearch,
 } from "../components";
-import { ArrowRight } from "../components/ArrowRight";
+import { ArrowRight } from "../components/Icons/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
-import { SimpleSearch } from "../components/SimpleSearch";
-import { AdvancedSearch } from "../components/AdvancedSearch";
-import { ReservationForm } from "../components/ReservationForm";
 
-export const Home = () => {
+type HomeProps = {
+  setComponent: Function;
+};
+
+export const Home = ({ setComponent }: HomeProps) => {
   const { colors } = useTheme();
-
   return (
     <div>
-      <Navigation />
+      <Navigation setComponent={setComponent} />
       <Header />
       <AccommodationSearch />
       <Container
@@ -50,6 +50,7 @@ export const Home = () => {
           </Typography>
 
           <Button
+            onClick={() => setComponent("locations")}
             sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
             endIcon={<ArrowRight />}
           >
@@ -80,7 +81,6 @@ export const Home = () => {
         </Grid>
 
         <Grid
-          spacing={1}
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -137,10 +137,11 @@ export const Home = () => {
             Homes guests love
           </Typography>
           <Button
+            onClick={() => setComponent("favorites")}
             sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
             endIcon={<ArrowRight />}
           >
-            View all locations
+            View all homes
           </Button>
         </Box>
 
@@ -156,64 +157,43 @@ export const Home = () => {
         >
           <Grid item>
             <AccommodationCard
+              setComponent={setComponent}
               title={accommodationCardData[0].title}
               location={accommodationCardData[0].location}
               price={accommodationCardData[0].price}
               categorization={accommodationCardData[0].categorization}
+              imgUrl={accommodationCardData[0].imgUrl}
             />
           </Grid>
           <Grid item>
             <AccommodationCard
+              setComponent={setComponent}
               title={accommodationCardData[1].title}
               location={accommodationCardData[1].location}
               price={accommodationCardData[1].price}
               categorization={accommodationCardData[1].categorization}
+              imgUrl={accommodationCardData[1].imgUrl}
             />
           </Grid>
           <Grid item>
             <AccommodationCard
+              setComponent={setComponent}
               title={accommodationCardData[2].title}
               location={accommodationCardData[2].location}
               price={accommodationCardData[2].price}
               categorization={accommodationCardData[2].categorization}
+              imgUrl={accommodationCardData[2].imgUrl}
             />
           </Grid>
           <Grid item>
             <AccommodationCard
+              setComponent={setComponent}
               title={accommodationCardData[3].title}
               location={accommodationCardData[3].location}
               price={accommodationCardData[3].price}
               categorization={accommodationCardData[3].categorization}
+              imgUrl={accommodationCardData[3].imgUrl}
             />
-          </Grid>
-        </Grid>
-      </Container>
-
-      <Container
-        maxWidth={"xl"}
-        sx={{
-          marginTop: "7rem",
-          marginBottom: "3rem",
-        }}
-      >
-        <SimpleSearch />
-
-        <AdvancedSearch />
-      </Container>
-
-      <Container
-        maxWidth={"xl"}
-        sx={{
-          marginTop: "7rem",
-          marginBottom: "3rem",
-        }}
-      >
-        <Grid container spacing={25} columns={16}>
-          <Grid item xs={8}>
-            <ReservationForm />
-          </Grid>
-          <Grid item xs={8}>
-            <Box sx={{ background: "#ff0000" }}>TEST</Box>
           </Grid>
         </Grid>
       </Container>

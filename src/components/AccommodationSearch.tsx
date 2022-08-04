@@ -1,13 +1,17 @@
 import { Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { LocationInput } from "./InputFields/LocationInput";
-import { CheckInInput } from "./InputFields/CheckInInput";
-import { CheckOutInput } from "./InputFields/CheckOutInput";
-import { GuestNumberInput } from "./InputFields/GuestNumberInput";
-import { AccommodationTypeInput } from "./InputFields/AccommodationTypeInput";
+import { JsxChild } from "typescript";
+import {
+  LocationInput,
+  CheckInInput,
+  CheckOutInput,
+  GuestNumberInput,
+  AccommodationTypeInput,
+} from "./InputFields";
+
 import { SearchButton } from "./SearchButton";
 
-export const AccommodationSearch = () => {
+export const AccommodationSearch = (): JSX.Element => {
   const { colors, shadow } = useTheme();
 
   return (

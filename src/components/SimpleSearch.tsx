@@ -1,5 +1,5 @@
 import { Stack, Grid, Box } from "@mui/material";
-import { LocationInput } from "./InputFields/LocationInput";
+import { LocationInput } from "./InputFields";
 import { SearchButton } from "./SearchButton";
 export const SimpleSearch = () => {
   return (

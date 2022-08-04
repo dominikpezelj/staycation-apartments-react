@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const BookStayButton = () => {
+export const BookStayButton = (): JSX.Element => {
   const { colors } = useTheme();
   return (
     <Button
