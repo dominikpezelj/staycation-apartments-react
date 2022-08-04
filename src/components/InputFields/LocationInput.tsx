@@ -37,7 +37,10 @@ export const LocationInput = () => {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        "& .MuiTextField-root": {
+          m: 1,
+          minWidth: "25ch",
+        },
       }}
       noValidate
       autoComplete="off"
@@ -56,6 +59,7 @@ export const LocationInput = () => {
               </InputAdornment>
             ),
           }}
+          sx={{ width: "100%" }}
         >
           {locations.map((option) => (
             <MenuItem key={option.value} value={option.value}>

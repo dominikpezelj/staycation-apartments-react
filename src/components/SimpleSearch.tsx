@@ -1,4 +1,4 @@
-import { Stack, Grid } from "@mui/material";
+import { Stack, Grid, Box } from "@mui/material";
 import { LocationInput } from "./InputFields/LocationInput";
 import { SearchButton } from "./SearchButton";
 export const SimpleSearch = () => {
@@ -6,7 +6,9 @@ export const SimpleSearch = () => {
     <Grid container spacing={2} columns={16}>
       <Grid item xs={8}>
         <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-          <LocationInput />
+          <Box sx={{ flex: 1 }}>
+            <LocationInput />
+          </Box>
           <SearchButton />
         </Stack>
       </Grid>
