@@ -12,6 +12,7 @@ import { ArrowRight } from "../components/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
 import { SimpleSearch } from "../components/SimpleSearch";
 import { AdvancedSearch } from "../components/AdvancedSearch";
+import { ReservationForm } from "../components/ReservationForm";
 
 export const Home = () => {
   const { colors } = useTheme();
@@ -22,6 +23,7 @@ export const Home = () => {
       <Header />
       <AccommodationSearch />
       <Container
+        maxWidth={"xl"}
         sx={{
           marginTop: "7rem",
           marginBottom: "3rem",
@@ -29,7 +31,13 @@ export const Home = () => {
           paddingRight: "7.5rem",
         }}
       >
-        <Box sx={{ justifyContent: "space-between", display: "flex" }}>
+        <Box
+          sx={{
+            justifyContent: "space-between",
+            display: "flex",
+            marginBottom: "3rem",
+          }}
+        >
           <Typography
             sx={{
               color: colors.textBlack,
@@ -103,84 +111,113 @@ export const Home = () => {
           </Grid>
         </Grid>
       </Container>
-
-      <Box
+      <Container
+        maxWidth={"xl"}
         sx={{
-          marginTop: "6rem",
+          marginTop: "7rem",
           marginBottom: "3rem",
-          paddingLeft: "7.5rem",
-          paddingRight: "7.5rem",
-          justifyContent: "space-between",
-          display: "flex",
         }}
       >
-        <Typography
+        <Box
           sx={{
-            color: colors.textBlack,
-            fontFamily: "Roboto",
-            fontWeight: "400",
-            fontSize: "34px",
+            marginTop: "6rem",
+            marginBottom: "3rem",
+            justifyContent: "space-between",
+            display: "flex",
           }}
         >
-          Homes guests love
-        </Typography>
-        <Button
-          sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
-          endIcon={<ArrowRight />}
-        >
-          View all locations
-        </Button>
-      </Box>
+          <Typography
+            sx={{
+              color: colors.textBlack,
+              fontFamily: "Roboto",
+              fontWeight: "400",
+              fontSize: "34px",
+            }}
+          >
+            Homes guests love
+          </Typography>
+          <Button
+            sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
+            endIcon={<ArrowRight />}
+          >
+            View all locations
+          </Button>
+        </Box>
 
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={3}
+          sx={{
+            marginBottom: "5rem",
+          }}
+        >
+          <Grid item>
+            <AccommodationCard
+              title={accommodationCardData[0].title}
+              location={accommodationCardData[0].location}
+              price={accommodationCardData[0].price}
+              categorization={accommodationCardData[0].categorization}
+            />
+          </Grid>
+          <Grid item>
+            <AccommodationCard
+              title={accommodationCardData[1].title}
+              location={accommodationCardData[1].location}
+              price={accommodationCardData[1].price}
+              categorization={accommodationCardData[1].categorization}
+            />
+          </Grid>
+          <Grid item>
+            <AccommodationCard
+              title={accommodationCardData[2].title}
+              location={accommodationCardData[2].location}
+              price={accommodationCardData[2].price}
+              categorization={accommodationCardData[2].categorization}
+            />
+          </Grid>
+          <Grid item>
+            <AccommodationCard
+              title={accommodationCardData[3].title}
+              location={accommodationCardData[3].location}
+              price={accommodationCardData[3].price}
+              categorization={accommodationCardData[3].categorization}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Container
+        maxWidth={"xl"}
         sx={{
-          paddingLeft: "7.5rem",
-          paddingRight: "7.5rem",
-          marginBottom: "5rem",
+          marginTop: "7rem",
+          marginBottom: "3rem",
         }}
       >
-        <Grid item>
-          <AccommodationCard
-            title={accommodationCardData[0].title}
-            location={accommodationCardData[0].location}
-            price={accommodationCardData[0].price}
-            categorization={accommodationCardData[0].categorization}
-          />
-        </Grid>
-        <Grid item>
-          <AccommodationCard
-            title={accommodationCardData[1].title}
-            location={accommodationCardData[1].location}
-            price={accommodationCardData[1].price}
-            categorization={accommodationCardData[1].categorization}
-          />
-        </Grid>
-        <Grid item>
-          <AccommodationCard
-            title={accommodationCardData[2].title}
-            location={accommodationCardData[2].location}
-            price={accommodationCardData[2].price}
-            categorization={accommodationCardData[2].categorization}
-          />
-        </Grid>
-        <Grid item>
-          <AccommodationCard
-            title={accommodationCardData[3].title}
-            location={accommodationCardData[3].location}
-            price={accommodationCardData[3].price}
-            categorization={accommodationCardData[3].categorization}
-          />
-        </Grid>
-      </Grid>
+        <SimpleSearch />
 
-      <SimpleSearch />
+        <AdvancedSearch />
+      </Container>
 
-      <AdvancedSearch />
+      <Container
+        maxWidth={"xl"}
+        sx={{
+          marginTop: "7rem",
+          marginBottom: "3rem",
+        }}
+      >
+        <Grid container spacing={25} columns={16}>
+          <Grid item xs={8}>
+            <ReservationForm />
+          </Grid>
+          <Grid item xs={8}>
+            <Box sx={{ background: "#ff0000" }}>TEST</Box>
+          </Grid>
+        </Grid>
+      </Container>
+
       <Footer />
     </div>
   );
