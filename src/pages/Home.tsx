@@ -10,6 +10,7 @@ import {
 } from "../components";
 import { ArrowRight } from "../components/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
+import { SimpleSearch } from "../components/SimpleSearch";
 
 export const Home = () => {
   const { colors } = useTheme();
@@ -175,6 +176,8 @@ export const Home = () => {
           />
         </Grid>
       </Grid>
+
+      <SimpleSearch />
       <Footer />
     </div>
   );

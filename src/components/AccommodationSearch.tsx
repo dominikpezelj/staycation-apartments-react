@@ -1,10 +1,11 @@
+import { Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { LocationInput } from "./InputFields/LocationInput";
 import { CheckInInput } from "./InputFields/CheckInInput";
 import { CheckOutInput } from "./InputFields/CheckOutInput";
 import { GuestNumberInput } from "./InputFields/GuestNumberInput";
 import { AccommodationTypeInput } from "./InputFields/AccommodationTypeInput";
-import { Stack, Button } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { SearchButton } from "./SearchButton";
 
 export const AccommodationSearch = () => {
   const { colors, shadow } = useTheme();
@@ -31,17 +32,7 @@ export const AccommodationSearch = () => {
       <CheckOutInput />
       <GuestNumberInput />
       <AccommodationTypeInput />
-      <Button
-        variant="contained"
-        sx={{
-          background: colors.mint,
-          color: colors.white,
-          width: "9.25rem",
-          height: "3.5rem",
-        }}
-      >
-        Search
-      </Button>
+      <SearchButton />
     </Stack>
   );
 };
