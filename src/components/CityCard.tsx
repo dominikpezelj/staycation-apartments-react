@@ -1,57 +1,26 @@
 import { CSSProperties } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import CardImage from "../assets/images/city-card.jpg";
-import NewYork from "../assets/images/cities/newyork.jpg";
-import Barcelona from "../assets/images/cities/barcelona.jpg";
-import London from "../assets/images/cities/london.jpg";
-import Rome from "../assets/images/cities/rome.jpg";
-import Tokyo from "../assets/images/cities/tokyo.jpg";
 
-type CityCardProps = { city: string; count: number; width: string };
+type CityCardProps = { city: string; count: number; imgUrl: string };
 
 export const CityCard = ({
   city,
   count,
-  width,
+  imgUrl,
 }: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
 
-  const backgroundImage =
-    city == "New York"
-      ? NewYork
-      : city == "Barcelona"
-      ? Barcelona
-      : city == "London"
-      ? London
-      : city == "Rome"
-      ? Rome
-      : city == "Tokyo"
-      ? Tokyo
-      : London;
-
   const CityCardBg: CSSProperties = {
     position: "relative",
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${imgUrl})`,
     backgroundRepeat: "no-repeat",
-    height: "295px",
-    width: width == "md" ? "38.625rem" : "25.25rem",
-    borderRadius: "12px",
-  };
-  const CityCardBg2 = {
-    background:
-      "linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%)",
-    backgroundRepeat: "no-repeat",
+    marginRight: "20px",
     height: "295px",
     borderRadius: "12px",
-    width: width == "md" ? "38.625rem" : "25.25rem",
   };
 
   const CityCardText: CSSProperties = {
-    paddingTop: "1.25rem",
-    paddingLeft: "0.8125rem",
-    position: "absolute",
-    top: "0",
     fontFamily: "Roboto",
     fontWeight: "600",
     fontSize: "24px",
@@ -61,10 +30,7 @@ export const CityCard = ({
   };
 
   const CityCardTextSm: CSSProperties = {
-    paddingTop: "3.5625rem",
-    paddingLeft: "0.8125rem",
-    position: "absolute",
-    top: "0",
+    paddingTop: "8px",
     fontFamily: "Roboto",
     fontWeight: "400",
     fontSize: "20px",
@@ -76,9 +42,17 @@ export const CityCard = ({
   let formatCount = count.toLocaleString();
   return (
     <Box style={CityCardBg}>
-      <Box style={CityCardBg2}></Box>
-      <Box style={CityCardText}>{city}</Box>
-      <Box style={CityCardTextSm}>{formatCount} properties</Box>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "0",
+          marginLeft: "5%",
+          marginTop: "1.25rem",
+        }}
+      >
+        <Box style={CityCardText}>{city}</Box>
+        <Box style={CityCardTextSm}>{formatCount} properties</Box>
+      </Box>
     </Box>
   );
 };

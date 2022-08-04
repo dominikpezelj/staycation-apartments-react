@@ -1,11 +1,4 @@
-import {
-  Typography,
-  Box,
-  Grid,
-  Button,
-  IconButton,
-  Stack,
-} from "@mui/material";
+import { Typography, Box, Container, Grid, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import {
   Header,
@@ -13,6 +6,7 @@ import {
   Footer,
   CityCard,
   AccommodationCard,
+  AccommodationSearch,
 } from "../components";
 import { ArrowRight } from "../components/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
@@ -24,113 +18,89 @@ export const Home = () => {
     <div>
       <Navigation />
       <Header />
-
-      <Box
+      <AccommodationSearch />
+      <Container
         sx={{
-          marginTop: "10rem",
+          marginTop: "7rem",
           marginBottom: "3rem",
           paddingLeft: "7.5rem",
           paddingRight: "7.5rem",
-          justifyContent: "space-between",
-          display: "flex",
         }}
       >
-        <Typography
-          sx={{
-            color: colors.textBlack,
-            fontFamily: "Roboto",
-            fontWeight: "400",
-            fontSize: "34px",
-          }}
-        >
-          Popular locations
-        </Typography>
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Button
-            component="label"
+        <Box sx={{ justifyContent: "space-between", display: "flex" }}>
+          <Typography
             sx={{
-              color: colors.mint,
+              color: colors.textBlack,
               fontFamily: "Roboto",
-              fontWeight: "500",
-              fontSize: "15px",
-              textTransform: "uppercase",
+              fontWeight: "400",
+              fontSize: "34px",
             }}
           >
-            View all locations
-            <input hidden />
-          </Button>
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="label"
-          >
-            <input hidden />
-            <ArrowRight />
-          </IconButton>
-        </Stack>
-      </Box>
-      <Grid
-        container
-        spacing={1}
-        columns={16}
-        justifyContent="center"
-        alignItems="center"
-        direction="row"
-        sx={{
-          paddingLeft: "7.5rem",
-          paddingRight: "7.5rem",
-          marginBottom: "24px",
-        }}
-      >
-        <Grid item>
-          <CityCard
-            city={cityCardData[0].name}
-            count={cityCardData[0].count}
-            width={"md"}
-          />
-        </Grid>
-        <Grid item>
-          <CityCard
-            city={cityCardData[1].name}
-            count={cityCardData[1].count}
-            width={"md"}
-          />
-        </Grid>
-      </Grid>
+            Popular locations
+          </Typography>
 
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
-        sx={{
-          paddingLeft: "7.5rem",
-          paddingRight: "7.5rem",
-        }}
-      >
-        <Grid item>
-          <CityCard
-            city={cityCardData[2].name}
-            count={cityCardData[2].count}
-            width={""}
-          />
+          <Button
+            sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
+            endIcon={<ArrowRight />}
+          >
+            View all locations
+          </Button>
+        </Box>
+        <Grid
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "row",
+          }}
+        >
+          <Grid item sx={{ flex: 1 }} xs={1}>
+            <CityCard
+              city={cityCardData[0].name}
+              count={cityCardData[0].count}
+              imgUrl={cityCardData[0].imgUrl}
+            />
+          </Grid>
+          <Grid item sx={{ flex: 1 }} xs={1}>
+            <CityCard
+              city={cityCardData[1].name}
+              count={cityCardData[1].count}
+              imgUrl={cityCardData[1].imgUrl}
+            />
+          </Grid>
         </Grid>
-        <Grid item>
-          <CityCard
-            city={cityCardData[3].name}
-            count={cityCardData[3].count}
-            width={""}
-          />
+
+        <Grid
+          spacing={1}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "row",
+            marginTop: "20px",
+          }}
+        >
+          <Grid item sx={{ flex: 1 }} xs={1}>
+            <CityCard
+              city={cityCardData[2].name}
+              count={cityCardData[2].count}
+              imgUrl={cityCardData[2].imgUrl}
+            />
+          </Grid>
+          <Grid item sx={{ flex: 1 }} xs={1}>
+            <CityCard
+              city={cityCardData[3].name}
+              count={cityCardData[3].count}
+              imgUrl={cityCardData[3].imgUrl}
+            />
+          </Grid>
+          <Grid item sx={{ flex: 1 }} xs={1}>
+            <CityCard
+              city={cityCardData[4].name}
+              count={cityCardData[4].count}
+              imgUrl={cityCardData[4].imgUrl}
+            />
+          </Grid>
         </Grid>
-        <Grid item>
-          <CityCard
-            city={cityCardData[4].name}
-            count={cityCardData[4].count}
-            width={""}
-          />
-        </Grid>
-      </Grid>
+      </Container>
 
       <Box
         sx={{
@@ -152,29 +122,12 @@ export const Home = () => {
         >
           Homes guests love
         </Typography>
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Button
-            component="label"
-            sx={{
-              color: colors.mint,
-              fontFamily: "Roboto",
-              fontWeight: "500",
-              fontSize: "15px",
-              textTransform: "uppercase",
-            }}
-          >
-            View all homes
-            <input hidden />
-          </Button>
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="label"
-          >
-            <input hidden />
-            <ArrowRight />
-          </IconButton>
-        </Stack>
+        <Button
+          sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
+          endIcon={<ArrowRight />}
+        >
+          View all locations
+        </Button>
       </Box>
 
       <Grid

@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { Star } from "./Star";
+import { Star } from "./Icons/Star";
 
 type RatingProps = { categorization: number };
 

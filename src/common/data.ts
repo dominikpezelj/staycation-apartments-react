@@ -1,24 +1,34 @@
+import NewYork from "../assets/images/cities/newyork.jpg";
+import Barcelona from "../assets/images/cities/barcelona.jpg";
+import London from "../assets/images/cities/london.jpg";
+import Rome from "../assets/images/cities/rome.jpg";
+import Tokyo from "../assets/images/cities/tokyo.jpg";
 
 const cityCardData = [
   {
     name: "New York",
     count: 1381,
+    imgUrl: NewYork,
   },
   {
     name: "Rome",
     count: 14098,
+    imgUrl: Rome
   },
   {
     name: "London",
     count: 5102,
+    imgUrl: London
   },
   {
     name: "Tokyo",
     count: 11251,
+    imgUrl: Tokyo
   },
   {
     name: "Barcelona",
     count: 21104,
+    imgUrl: Barcelona
   }
 ]
   const accommodationCardData = [
