@@ -11,6 +11,7 @@ import {
 import { ArrowRight } from "../components/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
 import { SimpleSearch } from "../components/SimpleSearch";
+import { AdvancedSearch } from "../components/AdvancedSearch";
 
 export const Home = () => {
   const { colors } = useTheme();
@@ -178,6 +179,8 @@ export const Home = () => {
       </Grid>
 
       <SimpleSearch />
+
+      <AdvancedSearch />
       <Footer />
     </div>
   );
