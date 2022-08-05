@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Rating } from "./Rating";
+import { Rating } from "../Rating";
 
 type ReservationCardProps = {
   data: AccommodationDataProps;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Stack, Grid, Box } from "@mui/material";
-import { LocationInput } from "./InputFields";
-import { SearchButton } from "./SearchButton";
+import { LocationInput } from "../InputFields";
+import { SearchButton } from "../SearchButton";
 export const SimpleSearch = () => {
   const [location, setLocation] = useState("");
   const getData = () => {
