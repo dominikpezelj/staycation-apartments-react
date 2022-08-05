@@ -95,4 +95,15 @@ const cityCardData = [
     postalCode: "846 00",
   };
 
-  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, }
+  const accommodationTypes = [
+    {
+      value: "Room",
+    },
+    {
+      value: "Apartment",
+    },
+    {
+      value: "Mobile home",
+    },
+  ];
+  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes}

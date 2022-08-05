@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { JsxChild } from "typescript";
 import {
   LocationInput,
   CheckInInput,
@@ -8,12 +8,46 @@ import {
   GuestNumberInput,
   AccommodationTypeInput,
 } from "./InputFields";
-
 import { SearchButton } from "./SearchButton";
 
 export const AccommodationSearch = (): JSX.Element => {
+  const [location, setLocation] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guestNumber, setGuestNumber] = useState("");
+  const [accommodationType, setAccommodationType] = useState("");
   const { colors, shadow } = useTheme();
 
+  const getData = () => {
+    const accommodationSearchSubmit = {
+      location: location,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      guestNumber: guestNumber,
+      accommodationType: accommodationType,
+    };
+    console.log(accommodationSearchSubmit);
+  };
+
+  const getLocationData = (locationInput: string) => {
+    setLocation(locationInput);
+  };
+
+  const getCheckInData = (checkInInput: string) => {
+    setCheckIn(checkInInput);
+  };
+
+  const getCheckOutData = (checkOutInput: string) => {
+    setCheckOut(checkOutInput);
+  };
+
+  const getGuestNumberData = (guestNumberInput: string) => {
+    setGuestNumber(guestNumberInput);
+  };
+
+  const getAccommodationTypeData = (accommodationTypeInput: string) => {
+    setAccommodationType(accommodationTypeInput);
+  };
   return (
     <Stack
       direction="row"
@@ -31,12 +65,12 @@ export const AccommodationSearch = (): JSX.Element => {
         boxShadow: shadow.main,
       }}
     >
-      <LocationInput />
-      <CheckInInput />
-      <CheckOutInput />
-      <GuestNumberInput />
-      <AccommodationTypeInput />
-      <SearchButton />
+      <LocationInput getLocation={getLocationData} />
+      <CheckInInput getCheckIn={getCheckInData} />
+      <CheckOutInput getCheckOut={getCheckOutData} />
+      <GuestNumberInput getGuestNumber={getGuestNumberData} />
+      <AccommodationTypeInput getAccommodationType={getAccommodationTypeData} />
+      <SearchButton onSubmitSearch={getData} />
     </Stack>
   );
 };

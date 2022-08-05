@@ -1,34 +1,26 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 //SELECT
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
 //ICONS
-
 import { Bed } from "../Icons/Bed";
+//DATA
+import { accommodationTypes } from "../../common/data";
 
-const locations = [
-  {
-    value: "1",
-    label: "Room",
-  },
-  {
-    value: "2",
-    label: "Apartment",
-  },
-  {
-    value: "3",
-    label: "Mobile home",
-  },
-];
+type AccommodationTypeInputProps = {
+  getAccommodationType: Function;
+};
 
-export const AccommodationTypeInput = () => {
-  //SELECT
-  const [location, setLocation] = React.useState("2");
+export const AccommodationTypeInput = ({
+  getAccommodationType,
+}: AccommodationTypeInputProps) => {
+  const [accommodationType, setAccommodationType] = useState("Room");
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLocation(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAccommodationType(event.target.value);
+    getAccommodationType(event.target.value);
   };
   return (
     <Box
@@ -44,8 +36,8 @@ export const AccommodationTypeInput = () => {
           id="outlined-select-currency"
           select
           label="What type of accommodation?"
-          value={location}
-          onChange={handleChange1}
+          value={accommodationType}
+          onChange={handleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -54,9 +46,9 @@ export const AccommodationTypeInput = () => {
             ),
           }}
         >
-          {locations.map((option) => (
+          {accommodationTypes.map((option) => (
             <MenuItem key={option.value} value={option.value}>
-              {option.label}
+              {option.value}
             </MenuItem>
           ))}
         </TextField>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 //SELECT
 import TextField from "@mui/material/TextField";
@@ -6,32 +6,20 @@ import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
 //ICONS
 import { Car } from "../Icons/Car";
+//DATA
+import { cityCardData } from "../../common/data";
 
-const locations = [
-  {
-    value: "1",
-    label: "London",
-  },
-  {
-    value: "2",
-    label: "Barcelona",
-  },
-  {
-    value: "3",
-    label: "Rome",
-  },
-  {
-    value: "4",
-    label: "Chicago",
-  },
-];
+type LocationInputProps = {
+  getLocation: Function;
+};
 
-export const LocationInput = () => {
+export const LocationInput = ({ getLocation }: LocationInputProps) => {
   //SELECT
-  const [location, setLocation] = React.useState("1");
+  const [location, setLocation] = useState("London");
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
+    getLocation(event.target.value);
   };
   return (
     <Box
@@ -51,7 +39,7 @@ export const LocationInput = () => {
           select
           label="Where are you going?"
           value={location}
-          onChange={handleChange1}
+          onChange={handleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -61,9 +49,9 @@ export const LocationInput = () => {
           }}
           sx={{ width: "100%" }}
         >
-          {locations.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {cityCardData.map((option) => (
+            <MenuItem key={option.name} value={option.name}>
+              {option.name}
             </MenuItem>
           ))}
         </TextField>

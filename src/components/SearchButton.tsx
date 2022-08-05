@@ -1,9 +1,16 @@
 import { Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const SearchButton = () => {
-  const { colors, shadow } = useTheme();
+type searchButtonProps = {
+  onSubmitSearch: Function;
+};
 
+export const SearchButton = ({ onSubmitSearch }: searchButtonProps) => {
+  const { colors } = useTheme();
+
+  const handleClick = () => {
+    onSubmitSearch();
+  };
   return (
     <Button
       variant="contained"
@@ -13,6 +20,7 @@ export const SearchButton = () => {
         width: "9.25rem",
         height: "3.5rem",
       }}
+      onClick={handleClick}
     >
       Search
     </Button>

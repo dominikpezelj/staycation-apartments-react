@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 
 //INPUT
@@ -10,20 +10,18 @@ import FormControl from "@mui/material/FormControl";
 //ICON
 import { Profile } from "../Icons/Profile";
 
-type State = {
-  amount: string;
+type GuestNumberInputProps = {
+  getGuestNumber: Function;
 };
 
-export const GuestNumberInput = () => {
+export const GuestNumberInput = ({ getGuestNumber }: GuestNumberInputProps) => {
   //INPUT
-  const [values, setValues] = React.useState<State>({
-    amount: "",
-  });
+  const [guestNumber, setGuestNumber] = useState("");
 
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGuestNumber(event.target.value);
+    getGuestNumber(event.target.value);
+  };
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -34,8 +32,8 @@ export const GuestNumberInput = () => {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
-            value={values.amount}
-            onChange={handleChange("amount")}
+            value={guestNumber}
+            onChange={handleChange}
             startAdornment={
               <InputAdornment position="start">
                 <Profile />
