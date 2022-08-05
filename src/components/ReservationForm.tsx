@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { InputCalendar } from "./Icons/InputCalendar";
 import { useTheme } from "@mui/material/styles";
-import { BookStayButton } from "./BookStayButton";
+import { BookStayButton } from "./Buttons/BookStayButton";
 export const ReservationForm = () => {
   const { colors } = useTheme();
   return (

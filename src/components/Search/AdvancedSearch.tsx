@@ -6,7 +6,7 @@ import {
   GuestNumberInput,
   AccommodationTypeInput,
 } from "../InputFields";
-import { SearchButton } from "../SearchButton";
+import { SearchButton } from "../Buttons/SearchButton";
 
 export const AdvancedSearch = (): JSX.Element => {
   const [checkIn, setCheckIn] = useState("");
