@@ -3,7 +3,7 @@ import HeaderImage from "../assets/images/accommodation-info.jpg";
 import Calendar from "../assets/images/calendar.svg";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "../components/Rating";
-import { Navigation } from "../components";
+import { Navigation } from "../components/Navigation";
 
 type dataProps = {
   title: string;

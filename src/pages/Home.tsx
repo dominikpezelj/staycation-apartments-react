@@ -1,13 +1,12 @@
 import { Typography, Box, Container, Grid, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import {
-  Header,
-  Navigation,
-  Footer,
-  CityCard,
-  AccommodationCard,
-  AccommodationSearch,
-} from "../components";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { Navigation } from "../components/Navigation";
+import { CityCard } from "../components/Cards/CityCard";
+import { AccommodationCard } from "../components/Cards/AccommodationCard";
+import { AccommodationSearch } from "../components/Search/AccommodationSearch";
+
 import { ArrowRight } from "../components/Icons/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
 
@@ -17,6 +16,10 @@ type HomeProps = {
 
 export const Home = ({ setComponent }: HomeProps) => {
   const { colors } = useTheme();
+
+  const mostPopularItems = cityCardData.slice(0, 2);
+  const popularItems = cityCardData.slice(2, undefined);
+
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -64,20 +67,15 @@ export const Home = ({ setComponent }: HomeProps) => {
             flexDirection: "row",
           }}
         >
-          <Grid item sx={{ flex: 1 }} xs={1}>
-            <CityCard
-              city={cityCardData[0].name}
-              count={cityCardData[0].count}
-              imgUrl={cityCardData[0].imgUrl}
-            />
-          </Grid>
-          <Grid item sx={{ flex: 1 }} xs={1}>
-            <CityCard
-              city={cityCardData[1].name}
-              count={cityCardData[1].count}
-              imgUrl={cityCardData[1].imgUrl}
-            />
-          </Grid>
+          {mostPopularItems.map((item) => (
+            <Grid item sx={{ flex: 1 }} xs={1}>
+              <CityCard
+                city={item.name}
+                count={item.count}
+                imgUrl={item.imgUrl}
+              />
+            </Grid>
+          ))}
         </Grid>
 
         <Grid
@@ -88,27 +86,15 @@ export const Home = ({ setComponent }: HomeProps) => {
             marginTop: "20px",
           }}
         >
-          <Grid item sx={{ flex: 1 }} xs={1}>
-            <CityCard
-              city={cityCardData[2].name}
-              count={cityCardData[2].count}
-              imgUrl={cityCardData[2].imgUrl}
-            />
-          </Grid>
-          <Grid item sx={{ flex: 1 }} xs={1}>
-            <CityCard
-              city={cityCardData[3].name}
-              count={cityCardData[3].count}
-              imgUrl={cityCardData[3].imgUrl}
-            />
-          </Grid>
-          <Grid item sx={{ flex: 1 }} xs={1}>
-            <CityCard
-              city={cityCardData[4].name}
-              count={cityCardData[4].count}
-              imgUrl={cityCardData[4].imgUrl}
-            />
-          </Grid>
+          {popularItems.map((item) => (
+            <Grid item sx={{ flex: 1 }} xs={1}>
+              <CityCard
+                city={item.name}
+                count={item.count}
+                imgUrl={item.imgUrl}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Container>
       <Container
@@ -155,46 +141,18 @@ export const Home = ({ setComponent }: HomeProps) => {
             marginBottom: "5rem",
           }}
         >
-          <Grid item>
-            <AccommodationCard
-              setComponent={setComponent}
-              title={accommodationCardData[0].title}
-              location={accommodationCardData[0].location}
-              price={accommodationCardData[0].price}
-              categorization={accommodationCardData[0].categorization}
-              imgUrl={accommodationCardData[0].imgUrl}
-            />
-          </Grid>
-          <Grid item>
-            <AccommodationCard
-              setComponent={setComponent}
-              title={accommodationCardData[1].title}
-              location={accommodationCardData[1].location}
-              price={accommodationCardData[1].price}
-              categorization={accommodationCardData[1].categorization}
-              imgUrl={accommodationCardData[1].imgUrl}
-            />
-          </Grid>
-          <Grid item>
-            <AccommodationCard
-              setComponent={setComponent}
-              title={accommodationCardData[2].title}
-              location={accommodationCardData[2].location}
-              price={accommodationCardData[2].price}
-              categorization={accommodationCardData[2].categorization}
-              imgUrl={accommodationCardData[2].imgUrl}
-            />
-          </Grid>
-          <Grid item>
-            <AccommodationCard
-              setComponent={setComponent}
-              title={accommodationCardData[3].title}
-              location={accommodationCardData[3].location}
-              price={accommodationCardData[3].price}
-              categorization={accommodationCardData[3].categorization}
-              imgUrl={accommodationCardData[3].imgUrl}
-            />
-          </Grid>
+          {accommodationCardData.map((item) => (
+            <Grid item>
+              <AccommodationCard
+                setComponent={setComponent}
+                title={item.title}
+                location={item.location}
+                price={item.price}
+                categorization={item.categorization}
+                imgUrl={item.imgUrl}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Container>
 

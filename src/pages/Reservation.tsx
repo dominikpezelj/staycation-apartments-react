@@ -1,5 +1,7 @@
 import { Container, Grid } from "@mui/material";
-import { Navigation, ReservationForm, ReservationCard } from "../components";
+import { Navigation } from "../components/Navigation";
+import { ReservationForm } from "../components/ReservationForm";
+import { ReservationCard } from "../components/Cards/ReservationCard";
 import { accommodationInfoData } from "../common/data";
 
 type ReservationProps = {

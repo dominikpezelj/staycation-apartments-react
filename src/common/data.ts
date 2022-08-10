@@ -9,6 +9,11 @@ import Tokyo from "../assets/images/cities/tokyo.jpg";
 //RESERVATION
 import ReservationImage from "../assets/images/reservation-card.jpg"
 
+const locations = ["New York","Rome","London","Tokyo","Barcelona"]
+
+const accommodationTypes = [ "Room", "Apartment", "Mobile home" ];
+
+
 const cityCardData = [
   {
     name: "New York",
@@ -95,15 +100,5 @@ const cityCardData = [
     postalCode: "846 00",
   };
 
-  const accommodationTypes = [
-    {
-      value: "Room",
-    },
-    {
-      value: "Apartment",
-    },
-    {
-      value: "Mobile home",
-    },
-  ];
-  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes}
+
+  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes, locations}

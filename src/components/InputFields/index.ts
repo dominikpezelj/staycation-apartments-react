@@ -1,5 +1,0 @@
-export {AccommodationTypeInput} from "./AccommodationTypeInput"
-export {CheckInInput} from "./CheckInInput"
-export {CheckOutInput} from "./CheckOutInput"
-export {GuestNumberInput} from "./GuestNumberInput"
-export {LocationInput} from "./LocationInput"

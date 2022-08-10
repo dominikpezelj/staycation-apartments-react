@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
-import { AdvancedSearch, Navigation } from "../components";
+import { Navigation } from "../components/Navigation";
+import { AdvancedSearch } from "../components/Search/AdvancedSearch";
 
 type FavoritesProps = {
   setComponent: Function;

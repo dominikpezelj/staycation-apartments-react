@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
-import { Navigation } from "../components";
+import { Container, Box } from "@mui/material";
+import { Navigation } from "../components/Navigation";
 
 type MyBookingsProps = {
   setComponent: Function;

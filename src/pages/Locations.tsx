@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
-import { Navigation, SimpleSearch } from "../components";
+import { Navigation } from "../components/Navigation";
+import { SimpleSearch } from "../components/Search/SimpleSearch";
 
 type LocationsProps = {
   setComponent: Function;

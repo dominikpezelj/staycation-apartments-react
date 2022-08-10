@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import { Typography, Box, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import HeaderImage from "../assets/images/header-bg.jpg";

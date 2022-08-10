@@ -1,78 +1,112 @@
-import {
-  TextField,
-  Stack,
-  InputAdornment,
-  Typography,
-  Box,
-} from "@mui/material";
-import { InputCalendar } from "./Icons/InputCalendar";
+import { useState } from "react";
+import moment from "moment";
+import { Stack, Typography, Box, Button } from "@mui/material";
+
+//THEME
 import { useTheme } from "@mui/material/styles";
-import { BookStayButton } from "./Buttons/BookStayButton";
+//DATA
+import { bookStayLabel } from "../common/constants";
+//INPUT FIELDS
+import { InputField } from "../components/Form/InputField";
+import { DateField } from "../components/Form/DateField";
+
 export const ReservationForm = () => {
   const { colors } = useTheme();
+
+  const [formValues, setFormValues] = useState({
+    fullName: "",
+    email: "",
+    numGuests: "",
+    checkIn: "",
+    checkOut: "",
+  });
+
+  const handleChange = (name: string, value: string) => {
+    setFormValues((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(formValues);
+  };
+
+  const now = moment().format("DD-MM-YYYY");
   return (
     <Box>
-      <Stack spacing={4}>
-        <Typography
-          sx={{
-            color: colors.textBlack,
-            fontFamily: "Roboto",
-            fontWeight: "400",
-            fontSize: "34px",
-          }}
-        >
-          Book your stay
-        </Typography>
-        <TextField id="outlined-basic" label="Full Name" variant="outlined" />
-        <TextField
-          id="outlined-basic"
-          label="Email address"
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-basic"
-          label="Number of guests"
-          variant="outlined"
-        />
-
-        <Stack direction="row" spacing={2}>
-          <TextField
-            id="outlined-select-currency"
-            label="Check in"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <InputCalendar />
-                </InputAdornment>
-              ),
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={4}>
+          <Typography
+            sx={{
+              color: colors.textBlack,
+              fontFamily: "Roboto",
+              fontWeight: "400",
+              fontSize: "34px",
             }}
-            sx={{ flex: 1 }}
-          />
+          >
+            Book your stay
+          </Typography>
 
-          <TextField
-            id="outlined-select-currency"
-            label="Check out"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <InputCalendar />
-                </InputAdornment>
-              ),
-            }}
-            sx={{ flex: 1 }}
+          <InputField
+            onChange={handleChange}
+            value={formValues.fullName || ""}
+            label={"Full Name"}
+            name={"fullName"}
+            type={"text"}
           />
+          <InputField
+            onChange={handleChange}
+            value={formValues.email || ""}
+            label={"Email address"}
+            name={"email"}
+            type={"email"}
+          />
+          <InputField
+            onChange={handleChange}
+            value={formValues.numGuests || ""}
+            label={"Number of guests"}
+            name={"numGuests"}
+            type={"number"}
+            min={1}
+            max={100}
+          />
+          <Stack direction="row" spacing={2}>
+            <DateField
+              value={formValues.checkIn || now}
+              label={"Check in"}
+              name={"checkIn"}
+              onChange={handleChange}
+            />
+            <DateField
+              value={formValues.checkOut || now}
+              label={"Check out"}
+              name={"checkOut"}
+              onChange={handleChange}
+            />
+          </Stack>
+          <Box sx={{ justifyContent: "flex-end", display: "flex" }}>
+            <Box
+              sx={{
+                width: "40%",
+                marginTop: "2rem",
+              }}
+            >
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{
+                  backgroundColor: colors.mint,
+                  width: "100%",
+                  fontWeight: "500",
+                  fontSize: "15px",
+                  lineHeight: "26px",
+                }}
+              >
+                {bookStayLabel}
+              </Button>
+            </Box>
+          </Box>
         </Stack>
-      </Stack>
-      <Box sx={{ justifyContent: "flex-end", display: "flex" }}>
-        <Box
-          sx={{
-            width: "40%",
-            marginTop: "3rem",
-          }}
-        >
-          <BookStayButton />
-        </Box>
-      </Box>
+      </form>
     </Box>
   );
 };
