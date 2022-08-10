@@ -9,12 +9,18 @@ import { AccommodationDetails } from "./pages/AccommodationDetails";
 import { Reservation } from "./pages/Reservation";
 import { useState } from "react";
 import { accommodationInfoData } from "./common/data";
+import { AccommodationByLocation } from "./pages/AccommodationsByLocation";
+import { NewPlaceForm } from "./pages/NewPlaceForm";
 
 function App() {
   const [component, setComponent] = useState("home");
+  const [searchData, setSearchData] = useState("");
+
   return (
     <ThemeProvider theme={theme}>
-      {component === "home" && <Home setComponent={setComponent} />}
+      {component === "home" && (
+        <Home setComponent={setComponent} setSearchData={setSearchData} />
+      )}
       {component === "locations" && <Locations setComponent={setComponent} />}
       {component === "favorites" && <Favorites setComponent={setComponent} />}
       {component === "myplaces" && <MyPlaces setComponent={setComponent} />}
@@ -27,6 +33,16 @@ function App() {
       )}
       {component === "reservation" && (
         <Reservation setComponent={setComponent} />
+      )}
+      {component === "accommodationbylocation" && (
+        <AccommodationByLocation
+          setComponent={setComponent}
+          location={searchData}
+          properties={1000}
+        />
+      )}
+      {component === "newplaceform" && (
+        <NewPlaceForm setComponent={setComponent} />
       )}
     </ThemeProvider>
   );

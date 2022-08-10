@@ -12,9 +12,10 @@ import { cityCardData, accommodationCardData } from "../common/data";
 
 type HomeProps = {
   setComponent: Function;
+  setSearchData: Function;
 };
 
-export const Home = ({ setComponent }: HomeProps) => {
+export const Home = ({ setComponent, setSearchData }: HomeProps) => {
   const { colors } = useTheme();
 
   const mostPopularItems = cityCardData.slice(0, 2);
@@ -24,7 +25,10 @@ export const Home = ({ setComponent }: HomeProps) => {
     <div>
       <Navigation setComponent={setComponent} />
       <Header />
-      <AccommodationSearch />
+      <AccommodationSearch
+        setComponent={setComponent}
+        setSearchData={setSearchData}
+      />
       <Container
         maxWidth={"xl"}
         sx={{
