@@ -6,13 +6,15 @@ import {
   CardActionArea,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Rating } from "./Rating";
+import { Rating } from "../Rating";
 
 type AccommodationCardProps = {
   title: string;
   location: string;
   price: number;
   categorization: number;
+  imgUrl: string;
+  setComponent: Function;
 };
 
 export const AccommodationCard = ({
@@ -20,11 +22,16 @@ export const AccommodationCard = ({
   location,
   price,
   categorization,
+  imgUrl,
+  setComponent,
 }: AccommodationCardProps): JSX.Element => {
   const { colors } = useTheme();
 
   return (
-    <Card sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}>
+    <Card
+      sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}
+      onClick={() => setComponent("accommodation-details")}
+    >
       <CardActionArea>
         <CardMedia
           sx={{
@@ -33,7 +40,7 @@ export const AccommodationCard = ({
             height: "16.625rem",
           }}
           component="img"
-          image="/accommodation-card.png"
+          image={"/homes/" + imgUrl}
           alt=""
         />
         <CardContent>

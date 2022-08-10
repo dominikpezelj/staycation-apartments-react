@@ -9,7 +9,11 @@ import {
 import { appName, menuItems } from "../common/constants";
 import { useTheme } from "@mui/material/styles";
 
-export const Navigation = () => {
+type NavigationProps = {
+  setComponent: Function;
+};
+
+export const Navigation = ({ setComponent }: NavigationProps) => {
   const { colors, shadow } = useTheme();
 
   const appBarClass = {
@@ -36,6 +40,17 @@ export const Navigation = () => {
         <Stack direction="row" spacing={1}>
           {menuItems.map((item) => (
             <MenuItem
+              onClick={() =>
+                setComponent(
+                  item == "Locations"
+                    ? "home"
+                    : item == "My Places"
+                    ? "myplaces"
+                    : item == "My Bookings"
+                    ? "mybookings"
+                    : "mybookings"
+                )
+              }
               sx={{
                 color: colors.textMenuItems,
                 fontWeight: "400",
@@ -44,6 +59,7 @@ export const Navigation = () => {
               key={item}
             >
               <Typography
+              key={item}
                 textAlign="center"
                 sx={{
                   textDecoration: "underline",

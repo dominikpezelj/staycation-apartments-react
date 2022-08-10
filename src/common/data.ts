@@ -1,14 +1,111 @@
 
-const cityCardData = {
+//LOCATIONS
+import NewYork from "../assets/images/cities/newyork.jpg";
+import Barcelona from "../assets/images/cities/barcelona.jpg";
+import London from "../assets/images/cities/london.jpg";
+import Rome from "../assets/images/cities/rome.jpg";
+import Tokyo from "../assets/images/cities/tokyo.jpg";
+
+//RESERVATION
+import ReservationImage from "../assets/images/reservation-card.jpg"
+
+const accommodationTypes = [
+  {
+    name: "selectRoom",
+    value: "Room"
+  },
+  {
+    name: "selectApartment",
+    value: "Apartment"
+  },
+  {
+    name: "selectMobileHome",
+    value: "Mobile home"
+  },
+
+]
+
+const locations = [
+  {
+    name:"selectNewYork",
+    value: "New York"
+  },
+  {
+    name:"selectRome",
+    value: "Rome"
+  },
+  {
+    name:"selectLondon",
+    value: "London"
+  },
+  {
+    name:"selectTokyo",
+    value: "Tokyo"
+  },
+  {
+    name:"selectBarcelona",
+    value: "Barcelona"
+  },
+]
+
+const cityCardData = [
+  {
+    name: "New York",
+    count: 1381,
+    imgUrl: NewYork,
+  },
+  {
+    name: "Rome",
+    count: 14098,
+    imgUrl: Rome
+  },
+  {
     name: "London",
     count: 5102,
-  };
-  const accommodationCardData = {
+    imgUrl: London
+  },
+  {
+    name: "Tokyo",
+    count: 11251,
+    imgUrl: Tokyo
+  },
+  {
+    name: "Barcelona",
+    count: 21104,
+    imgUrl: Barcelona
+  }
+]
+  const accommodationCardData = [
+    {
     title: "Sugar & Spice Apartments",
     location: "Split",
     price: 75,
     categorization: 3,
-  };
+    imgUrl: "home1.png"
+  },
+  {
+    title: "Lemon Luxury Apartments",
+    location: "Saint Tropez",
+    price: 174,
+    categorization: 5,
+    imgUrl: "home2.jpg"
+  },
+  {
+    title: "Casa Krystal",
+    location: "Cancun",
+    price: 123,
+    categorization: 4,
+    imgUrl: "home3.jpg"
+  },
+  {
+    title: "Phuket Kamala Beach Hotel",
+    location: "Phuket",
+    price: 55,
+    categorization: 3,
+    imgUrl: "home4.jpg"
+  },
+
+]
   const placeCardData = [
     {
       title: "Treehouse",
@@ -22,7 +119,7 @@ const cityCardData = {
     },
   ];
 
-  const AccommodationInfoData = {
+  const accommodationInfoData = {
     title: "Poseidon Hotel Suites",
     subtitle: "Stay in the heart of Mýkonos City",
     description:
@@ -30,11 +127,12 @@ const cityCardData = {
     type: "Room",
     categorization: 5,
     personCount: 2,
-    imageUrl: "",
+    imageUrl: ReservationImage,
     freeCancelation: true,
     price: 500,
     location: "Mýkonos City",
     postalCode: "846 00",
   };
 
-  export {cityCardData, accommodationCardData, placeCardData, AccommodationInfoData, }
+
+  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes, locations}
