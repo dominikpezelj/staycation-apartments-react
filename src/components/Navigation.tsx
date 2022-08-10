@@ -59,6 +59,7 @@ export const Navigation = ({ setComponent }: NavigationProps) => {
               key={item}
             >
               <Typography
+              key={item}
                 textAlign="center"
                 sx={{
                   textDecoration: "underline",

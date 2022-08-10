@@ -9,10 +9,44 @@ import Tokyo from "../assets/images/cities/tokyo.jpg";
 //RESERVATION
 import ReservationImage from "../assets/images/reservation-card.jpg"
 
-const locations = ["New York","Rome","London","Tokyo","Barcelona"]
+const accommodationTypes = [
+  {
+    name: "selectRoom",
+    value: "Room"
+  },
+  {
+    name: "selectApartment",
+    value: "Apartment"
+  },
+  {
+    name: "selectMobileHome",
+    value: "Mobile home"
+  },
 
-const accommodationTypes = [ "Room", "Apartment", "Mobile home" ];
+]
 
+const locations = [
+  {
+    name:"selectNewYork",
+    value: "New York"
+  },
+  {
+    name:"selectRome",
+    value: "Rome"
+  },
+  {
+    name:"selectLondon",
+    value: "London"
+  },
+  {
+    name:"selectTokyo",
+    value: "Tokyo"
+  },
+  {
+    name:"selectBarcelona",
+    value: "Barcelona"
+  },
+]
 
 const cityCardData = [
   {

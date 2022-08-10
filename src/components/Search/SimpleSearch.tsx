@@ -35,7 +35,7 @@ export const SimpleSearch = () => {
               <SelectField
                 onChange={handleChange}
                 selectOptions={locations}
-                value={formValues.location || locations[0]}
+                value={formValues.location || locations[0].value}
                 label={"Where are you going?"}
                 name={"location"}
                 icon={{

@@ -68,8 +68,9 @@ export const Home = ({ setComponent }: HomeProps) => {
           }}
         >
           {mostPopularItems.map((item) => (
-            <Grid item sx={{ flex: 1 }} xs={1}>
+            <Grid item sx={{ flex: 1 }} xs={1} key={item.name}>
               <CityCard
+                key={item.name}
                 city={item.name}
                 count={item.count}
                 imgUrl={item.imgUrl}
@@ -87,8 +88,9 @@ export const Home = ({ setComponent }: HomeProps) => {
           }}
         >
           {popularItems.map((item) => (
-            <Grid item sx={{ flex: 1 }} xs={1}>
+            <Grid item sx={{ flex: 1 }} xs={1} key={item.name}>
               <CityCard
+                key={item.name}
                 city={item.name}
                 count={item.count}
                 imgUrl={item.imgUrl}
@@ -142,7 +144,7 @@ export const Home = ({ setComponent }: HomeProps) => {
           }}
         >
           {accommodationCardData.map((item) => (
-            <Grid item>
+            <Grid item key={item.title}>
               <AccommodationCard
                 setComponent={setComponent}
                 title={item.title}
@@ -150,6 +152,7 @@ export const Home = ({ setComponent }: HomeProps) => {
                 price={item.price}
                 categorization={item.categorization}
                 imgUrl={item.imgUrl}
+                key={item.title}
               />
             </Grid>
           ))}

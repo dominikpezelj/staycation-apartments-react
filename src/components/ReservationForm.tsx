@@ -48,21 +48,21 @@ export const ReservationForm = () => {
 
           <InputField
             onChange={handleChange}
-            value={formValues.fullName || ""}
+            value={formValues.fullName}
             label={"Full Name"}
             name={"fullName"}
             type={"text"}
           />
           <InputField
             onChange={handleChange}
-            value={formValues.email || ""}
+            value={formValues.email}
             label={"Email address"}
             name={"email"}
             type={"email"}
           />
           <InputField
             onChange={handleChange}
-            value={formValues.numGuests || ""}
+            value={formValues.numGuests}
             label={"Number of guests"}
             name={"numGuests"}
             type={"number"}

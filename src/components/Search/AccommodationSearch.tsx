@@ -58,7 +58,7 @@ export const AccommodationSearch = (): JSX.Element => {
         <SelectField
           onChange={handleChange}
           selectOptions={locations}
-          value={formValues.location || locations[0]}
+          value={formValues.location || locations[0].value}
           label={"Where are you going?"}
           name={"location"}
           icon={{
@@ -84,7 +84,7 @@ export const AccommodationSearch = (): JSX.Element => {
         />
         <InputField
           onChange={handleChange}
-          value={formValues.guests || ""}
+          value={formValues.guests}
           label={"How many people?"}
           name={"guests"}
           type={"number"}
@@ -101,7 +101,7 @@ export const AccommodationSearch = (): JSX.Element => {
         <SelectField
           onChange={handleChange}
           selectOptions={accommodationTypes}
-          value={formValues.accommodation || accommodationTypes[0]}
+          value={formValues.accommodation || accommodationTypes[0].value}
           label={"Where are you going?"}
           name={"accommodation"}
           icon={{

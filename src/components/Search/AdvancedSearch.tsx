@@ -61,7 +61,7 @@ export const AdvancedSearch = (): JSX.Element => {
         />
         <InputField
           onChange={handleChange}
-          value={formValues.guests || ""}
+          value={formValues.guests}
           label={"How many people?"}
           name={"guests"}
           type={"number"}
@@ -78,7 +78,7 @@ export const AdvancedSearch = (): JSX.Element => {
         <SelectField
           onChange={handleChange}
           selectOptions={accommodationTypes}
-          value={formValues.accommodation || accommodationTypes[0]}
+          value={formValues.accommodation || accommodationTypes[0].value}
           label={"What type of accommodation?"}
           name={"accommodation"}
           icon={{

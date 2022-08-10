@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
 type SelectProps = {
-  selectOptions: string[];
+  selectOptions: { name: string; value: string }[];
   icon?: { [alignment: string]: ReactNode };
   label: string;
   value: string;
@@ -43,8 +43,8 @@ export const SelectField = ({
           InputProps={icon}
         >
           {selectOptions.map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
+            <MenuItem key={option.name} value={option.value}>
+              {option.value}
             </MenuItem>
           ))}
         </TextField>
