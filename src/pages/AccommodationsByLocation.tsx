@@ -49,8 +49,6 @@ export const AccommodationByLocation = ({
         <Grid
           container
           direction="row"
-          /* justifyContent="center"
-          alignItems="center" */
           spacing={3}
           sx={{
             marginBottom: "5rem",
