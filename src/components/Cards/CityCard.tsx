@@ -1,3 +1,4 @@
+import { useRef, SyntheticEvent, useState } from "react";
 import { CSSProperties } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -11,47 +12,65 @@ export const CityCard = ({
 }: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
 
-  const CityCardBg: CSSProperties = {
-    position: "relative",
-    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${imgUrl})`,
-    backgroundRepeat: "no-repeat",
-    marginRight: "20px",
-    height: "295px",
-    borderRadius: "12px",
-  };
-
-  const CityCardText: CSSProperties = {
-    fontFamily: "Roboto",
-    fontWeight: "600",
-    fontSize: "24px",
-    color: colors.white,
-    letterSpacing: "0.25px",
-    lineHeight: "28px",
-  };
-
-  const CityCardTextSm: CSSProperties = {
-    paddingTop: "8px",
-    fontFamily: "Roboto",
-    fontWeight: "400",
-    fontSize: "20px",
-    color: colors.white,
-    letterSpacing: "0.25px",
-    lineHeight: "24px",
-  };
-
   let formatCount = count.toLocaleString();
+
   return (
-    <Box style={CityCardBg}>
+    <Box
+      sx={{
+        position: "relative",
+      }}
+    >
       <Box
         sx={{
-          position: "absolute",
-          top: "0",
-          marginLeft: "5%",
-          marginTop: "1.25rem",
+          display: "inline-block",
+          background:
+            "linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%)",
+          backgroundSize: "cover",
+          width: "100%",
+          borderRadius: "12px",
         }}
       >
-        <Box style={CityCardText}>{city}</Box>
-        <Box style={CityCardTextSm}>{formatCount} properties</Box>
+        <img
+          src={imgUrl}
+          style={{
+            width: "100%",
+            zIndex: -1,
+            position: "relative",
+            display: "block",
+          }}
+          alt={city}
+        />
+
+        <Box
+          sx={{
+            position: "absolute",
+            top: "0",
+            marginLeft: "5%",
+            marginTop: "1.25rem",
+          }}
+        >
+          <Box
+            sx={{
+              fontFamily: "Roboto",
+              fontWeight: "600",
+              fontSize: "24px",
+              color: colors.white,
+            }}
+          >
+            {city}
+          </Box>
+          <Box
+            sx={{
+              paddingTop: "8px",
+              fontFamily: "Roboto",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: colors.white,
+            }}
+          >
+            {formatCount} properties
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

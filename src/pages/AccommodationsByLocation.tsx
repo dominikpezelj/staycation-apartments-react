@@ -1,8 +1,9 @@
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Grid } from "@mui/material";
 import { Navigation } from "../components/Navigation";
 import { AdvancedSearch } from "../components/Search/AdvancedSearch";
+import { AccommodationCard } from "../components/Cards/AccommodationCard";
 import { useTheme } from "@mui/material/styles";
-
+import { accommodationTestCard } from "../common/data";
 type AccommodationByLocationProps = {
   setComponent: Function;
   location: string;
@@ -44,6 +45,28 @@ export const AccommodationByLocation = ({
         <Box sx={{ marginY: "2.75rem" }}>
           <AdvancedSearch />
         </Box>
+
+        <Grid
+          container
+          direction="row"
+          /* justifyContent="center"
+          alignItems="center" */
+          spacing={3}
+          sx={{
+            marginBottom: "5rem",
+          }}
+        >
+          <Grid item>
+            <AccommodationCard
+              setComponent={setComponent}
+              title={accommodationTestCard.title}
+              location={accommodationTestCard.location}
+              price={accommodationTestCard.price}
+              categorization={accommodationTestCard.categorization}
+              imgUrl={accommodationTestCard.imgUrl}
+            />
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );

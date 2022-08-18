@@ -1,4 +1,4 @@
-import { Typography, Box, Container, Grid, Button } from "@mui/material";
+import { Typography, Box, Container, Grid, Button, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -64,44 +64,50 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
             View all locations
           </Button>
         </Box>
-        <Grid
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "row",
-          }}
-        >
-          {mostPopularItems.map((item) => (
-            <Grid item sx={{ flex: 1 }} xs={1} key={item.name}>
-              <CityCard
-                key={item.name}
-                city={item.name}
-                count={item.count}
-                imgUrl={item.imgUrl}
-              />
-            </Grid>
-          ))}
-        </Grid>
 
-        <Grid
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "row",
-            marginTop: "20px",
-          }}
-        >
-          {popularItems.map((item) => (
-            <Grid item sx={{ flex: 1 }} xs={1} key={item.name}>
-              <CityCard
-                key={item.name}
-                city={item.name}
-                count={item.count}
-                imgUrl={item.imgUrl}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        {/* Stack flex-wrap 
+        justify-content: space-between*/}
+        <Stack spacing={2}>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {mostPopularItems.map((item, index) => (
+              <Box sx={{ flex: 1 }} key={item.name}>
+                <CityCard
+                  key={item.name}
+                  city={item.name}
+                  count={item.count}
+                  imgUrl={item.imgUrl}
+                />
+              </Box>
+            ))}
+          </Stack>
+
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {popularItems.map((item) => (
+              <Box sx={{ flex: 1 }} key={item.name}>
+                <CityCard
+                  key={item.name}
+                  city={item.name}
+                  count={item.count}
+                  imgUrl={item.imgUrl}
+                />
+              </Box>
+            ))}
+          </Stack>
+        </Stack>
       </Container>
       <Container
         maxWidth={"xl"}
