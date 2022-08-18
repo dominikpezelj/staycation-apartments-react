@@ -75,12 +75,20 @@ const cityCardData = [
     imgUrl: Barcelona
   }
 ]
+
+const accommodationTestCard = {
+  title: "Sugar & Spice Apartments",
+    location: "Split",
+    price: 75,
+    categorization: 5,
+    imgUrl: "home5.jpg"
+}
   const accommodationCardData = [
     {
     title: "Sugar & Spice Apartments",
     location: "Split",
     price: 75,
-    categorization: 3,
+    categorization: 5,
     imgUrl: "home1.png"
   },
   {
@@ -94,14 +102,14 @@ const cityCardData = [
     title: "Casa Krystal",
     location: "Cancun",
     price: 123,
-    categorization: 4,
+    categorization: 5,
     imgUrl: "home3.jpg"
   },
   {
     title: "Phuket Kamala Beach Hotel",
     location: "Phuket",
     price: 55,
-    categorization: 3,
+    categorization: 5,
     imgUrl: "home4.jpg"
   },
 
@@ -135,4 +143,4 @@ const cityCardData = [
   };
 
 
-  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes, locations}
+  export {cityCardData, accommodationCardData, placeCardData, accommodationInfoData, accommodationTypes, locations, accommodationTestCard}

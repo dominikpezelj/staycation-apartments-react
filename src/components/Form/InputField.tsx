@@ -7,11 +7,13 @@ import { TextField } from "@mui/material";
 type InputFieldProps = {
   icon?: { [alignment: string]: ReactNode };
   label: string;
-  value: string;
+  value: string | number | null;
   name: string;
   type: string;
   min?: number;
   max?: number;
+  rows?: number;
+  multiline?: boolean;
   onChange(name: string, value: string): void;
 };
 
@@ -23,6 +25,8 @@ export const InputField = ({
   type,
   min,
   max,
+  rows,
+  multiline,
   onChange,
 }: InputFieldProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +47,8 @@ export const InputField = ({
             label={label}
             InputProps={icon}
             inputProps={{ min, max }}
+            multiline={multiline}
+            rows={rows}
             sx={{ minWidth: "200px" }}
           />
         </FormControl>

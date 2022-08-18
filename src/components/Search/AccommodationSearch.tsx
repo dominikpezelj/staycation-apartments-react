@@ -16,7 +16,15 @@ import { SelectField } from "../Form/SelectField";
 import { Profile } from "../Icons/Profile";
 import { Car } from "../Icons/Car";
 
-export const AccommodationSearch = (): JSX.Element => {
+type AccommodationSearchProps = {
+  setComponent: Function;
+  setSearchData: Function;
+};
+
+export const AccommodationSearch = ({
+  setComponent,
+  setSearchData,
+}: AccommodationSearchProps): JSX.Element => {
   const [formValues, setFormValues] = useState({
     location: "",
     checkIn: "",
@@ -34,6 +42,8 @@ export const AccommodationSearch = (): JSX.Element => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formValues);
+    setComponent("accommodationbylocation");
+    setSearchData(formValues.location);
   };
   const now = moment().format("DD-MM-YYYY");
 
@@ -102,7 +112,7 @@ export const AccommodationSearch = (): JSX.Element => {
           onChange={handleChange}
           selectOptions={accommodationTypes}
           value={formValues.accommodation || accommodationTypes[0].value}
-          label={"Where are you going?"}
+          label={"What type of accommodation?"}
           name={"accommodation"}
           icon={{
             startAdornment: (
