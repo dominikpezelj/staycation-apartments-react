@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { FocusEventHandler, ReactNode } from "react";
 import Box from "@mui/material/Box";
 
 import FormControl from "@mui/material/FormControl";
@@ -12,9 +12,14 @@ type InputFieldProps = {
   type: string;
   min?: number;
   max?: number;
+  minLength?: number;
+  maxLength?: number;
   rows?: number;
   multiline?: boolean;
+  helperText?: string;
+  error?: boolean;
   onChange(name: string, value: string): void;
+  onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
 };
 
 export const InputField = ({
@@ -25,9 +30,14 @@ export const InputField = ({
   type,
   min,
   max,
+  minLength,
+  maxLength,
   rows,
   multiline,
+  helperText,
+  error,
   onChange,
+  onBlur,
 }: InputFieldProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //console.log(event.target.name + event.target.value);
@@ -44,11 +54,19 @@ export const InputField = ({
             type={type}
             name={name}
             onChange={handleChange}
+            onBlur={onBlur}
             label={label}
             InputProps={icon}
-            inputProps={{ min, max }}
+            inputProps={{
+              min: min,
+              max: max,
+              minLength,
+              maxLength,
+            }}
             multiline={multiline}
             rows={rows}
+            helperText={helperText}
+            error={error}
             sx={{ minWidth: "200px" }}
           />
         </FormControl>

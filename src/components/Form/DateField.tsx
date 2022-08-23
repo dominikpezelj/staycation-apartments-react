@@ -8,10 +8,17 @@ type DateFieldProps = {
   label: string;
   value: string;
   name: string;
+  disableFuture?: boolean;
   onChange(name: string, value: string | null): void;
 };
 
-export const DateField = ({ label, value, name, onChange }: DateFieldProps) => {
+export const DateField = ({
+  label,
+  value,
+  name,
+  disableFuture,
+  onChange,
+}: DateFieldProps) => {
   const handleChange = (inputDate: string | null) => {
     onChange(name, inputDate);
   };
@@ -21,6 +28,7 @@ export const DateField = ({ label, value, name, onChange }: DateFieldProps) => {
         label={label}
         inputFormat="dd/MM/yyyy"
         value={value}
+        disableFuture={disableFuture}
         onChange={handleChange}
         InputAdornmentProps={{ position: "start" }}
         components={{

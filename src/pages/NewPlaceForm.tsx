@@ -1,5 +1,12 @@
-import { useState } from "react";
-import { Container, Box, Typography, Button, Stack } from "@mui/material";
+import { useState, useEffect } from "react";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  Stack,
+  FormHelperText,
+} from "@mui/material";
 import { Navigation } from "../components/Navigation";
 import { useTheme } from "@mui/material/styles";
 
@@ -32,18 +39,42 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
     listingImage: "",
     postalCode: "",
     location: "",
-    cancelation: false,
+    cancelation: true,
+  });
+  const [errMessages, setErrMessages] = useState({
+    listingName: true,
+    categorization: true,
+    price: true,
+    location: true,
+  });
+
+  const [isTouched, setIsTouched] = useState({
+    listingName: false,
+    categorization: false,
+    price: false,
+    location: false,
   });
 
   const handleChange = (name: string, value: FormInputValue) => {
     setFormValues((values) => ({ ...values, [name]: value }));
+    console.log(name + value);
   };
 
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    setIsTouched((values) => ({ ...values, [event.target.name]: true }));
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formValues);
   };
 
+  useEffect(() => {
+    Object.entries(formValues).map(([key, value]) => {
+      if (value === "" || value === null)
+        setErrMessages((values) => ({ ...values, [key]: true }));
+      else setErrMessages((values) => ({ ...values, [key]: false }));
+    });
+  }, [formValues]);
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -69,10 +100,18 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
             <Stack spacing={4}>
               <InputField
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={formValues.listingName}
                 label={"Listing name"}
                 name={"listingName"}
                 type={"text"}
+                maxLength={100}
+                error={errMessages.listingName && isTouched.listingName}
+                helperText={
+                  errMessages.listingName && isTouched.listingName
+                    ? "Please enter listing name"
+                    : " "
+                }
               />
               <InputField
                 onChange={handleChange}
@@ -80,6 +119,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
                 label={"Short description"}
                 name={"shortDesc"}
                 type={"text"}
+                maxLength={200}
               />
               <InputField
                 onChange={handleChange}
@@ -111,9 +151,16 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
                     name={"categorization"}
                     value={formValues.categorization}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 </Box>
               </Box>
+
+              <FormHelperText error sx={{ paddingLeft: "14px" }}>
+                {isTouched.categorization && errMessages.categorization
+                  ? "Please select categorization"
+                  : " "}
+              </FormHelperText>
               <SelectField
                 onChange={handleChange}
                 selectOptions={accommodationTypes}
@@ -133,6 +180,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
 
               <InputField
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={formValues.price}
                 label={"Price"}
                 name={"price"}
@@ -143,13 +191,28 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
                     <InputAdornment position="start">EUR</InputAdornment>
                   ),
                 }}
+                error={errMessages.price && isTouched.price}
+                helperText={
+                  errMessages.price && isTouched.price
+                    ? "Please enter price"
+                    : " "
+                }
               />
+
               <InputField
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={formValues.location}
                 label={"Location"}
                 name={"location"}
                 type={"text"}
+                maxLength={150}
+                error={errMessages.location && isTouched.location}
+                helperText={
+                  errMessages.location && isTouched.location
+                    ? "Please enter location"
+                    : " "
+                }
               />
               <InputField
                 onChange={handleChange}
