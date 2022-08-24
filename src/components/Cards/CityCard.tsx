@@ -12,7 +12,7 @@ export const CityCard = ({
 }: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
 
-  let formatCount = count.toLocaleString();
+  let formatCount = count?.toLocaleString();
 
   return (
     <Box

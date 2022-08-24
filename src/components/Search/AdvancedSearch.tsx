@@ -21,8 +21,8 @@ export const AdvancedSearch = (): JSX.Element => {
   const { colors } = useTheme();
 
   const [formValues, setFormValues] = useState({
-    checkIn: "",
-    checkOut: "",
+    checkIn: new Date(),
+    checkOut: new Date(),
     guests: "",
     accommodation: "",
   });

@@ -15,11 +15,26 @@ import { NewPlaceForm } from "./pages/NewPlaceForm";
 function App() {
   const [component, setComponent] = useState("home");
   const [searchData, setSearchData] = useState("");
+  const [recomendationId, setRecomendationId] = useState("");
+  const [bookStayData, setBookStayData] = useState({
+    id: "",
+    title: "",
+    imageUrl: "",
+    categorization: 0,
+    type: "",
+    location: { name: "", postalCode: 0 },
+    price: 0,
+  });
 
+  console.log(recomendationId);
   return (
     <ThemeProvider theme={theme}>
       {component === "home" && (
-        <Home setComponent={setComponent} setSearchData={setSearchData} />
+        <Home
+          setComponent={setComponent}
+          setSearchData={setSearchData}
+          setRecomendationId={setRecomendationId}
+        />
       )}
       {component === "locations" && <Locations setComponent={setComponent} />}
       {component === "favorites" && <Favorites setComponent={setComponent} />}
@@ -27,16 +42,21 @@ function App() {
       {component === "mybookings" && <MyBookings setComponent={setComponent} />}
       {component === "accommodation-details" && (
         <AccommodationDetails
-          data={accommodationInfoData}
+          id={recomendationId}
           setComponent={setComponent}
+          setBookStayData={setBookStayData}
         />
       )}
       {component === "reservation" && (
-        <Reservation setComponent={setComponent} />
+        <Reservation
+          setComponent={setComponent}
+          reservationData={bookStayData}
+        />
       )}
       {component === "accommodationbylocation" && (
         <AccommodationByLocation
           setComponent={setComponent}
+          setRecomendationId={setRecomendationId}
           location={searchData}
           properties={1000}
         />

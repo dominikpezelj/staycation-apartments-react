@@ -1,57 +1,80 @@
+import { useState, useEffect } from "react";
 import { Typography, Grid, Stack, Button, Box, Paper } from "@mui/material";
 import HeaderImage from "../assets/images/accommodation-info.jpg";
 import Calendar from "../assets/images/calendar.svg";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "../components/Rating";
 import { Navigation } from "../components/Navigation";
+import axios from "axios";
 
 type dataProps = {
   title: string;
   subtitle: string;
   description: string;
   type: string;
+  capacity: number;
   categorization: number;
   personCount: number;
   imageUrl: string;
   freeCancelation: boolean;
   price: number;
-  location: string;
-  postalCode: string;
+  location: {
+    idLocation: string;
+    name: string;
+    imageUri: string;
+    postalCode: number;
+    properties: number;
+  };
 };
 
 type AccommodationDetailsProps = {
-  data: dataProps;
+  id: string;
   setComponent: Function;
+  setBookStayData: Function;
 };
 
 export const AccommodationDetails = ({
-  data,
+  id,
   setComponent,
+  setBookStayData,
 }: AccommodationDetailsProps) => {
   const { colors, shadow } = useTheme();
 
-  const BackgroundStyle = {
-    backgroundImage: `url(${HeaderImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    marginTop: "4rem",
-    width: "100%",
-    height: "478px",
-    flex: 1,
-    borderRadius: "20px",
-  };
+  const [accommodation, setAccommodation] = useState();
 
-  const calendarIcon = {
-    backgroundImage: `url(${Calendar})`,
-    width: "23.33px",
-    height: "25.67px",
-  };
-  const container = {
-    paddingLeft: "7.5rem",
-    paddingRight: "7.5rem",
-  };
+  useEffect(() => {
+    const axiosGet = "https://devcademy.herokuapp.com/api/Accomodations/" + id;
+    const getAccommodationById = async () => {
+      const { data, status } = await axios.get(axiosGet);
 
-  const cancelation = data.freeCancelation
+      console.log(data.id);
+      setAccommodation(data);
+    };
+
+    getAccommodationById();
+  }, []);
+
+  if (!accommodation) return null;
+
+  const {
+    title,
+    subtitle,
+    description,
+    type,
+    capacity,
+    categorization,
+    personCount,
+    imageUrl,
+    freeCancelation,
+    price,
+  }: dataProps = accommodation;
+
+  const {
+    location: { idLocation, name, imageUri, postalCode, properties },
+  }: dataProps = accommodation;
+
+  console.log(accommodation);
+  const cancelation = freeCancelation
     ? "Free cancellation available"
     : "Free cancellation is not available";
 
@@ -59,8 +82,19 @@ export const AccommodationDetails = ({
     <div>
       <Navigation setComponent={setComponent} />
 
-      <Box style={container}>
-        <img style={BackgroundStyle}></img>
+      <Box sx={{ paddingLeft: "7.5rem", paddingRight: "7.5rem" }}>
+        <img
+          src={imageUrl}
+          style={{
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            marginTop: "4rem",
+            width: "100%",
+            height: "478px",
+            flex: 1,
+            borderRadius: "20px",
+          }}
+        ></img>
         <Grid container spacing={4} sx={{ marginTop: "0.5rem" }}>
           <Grid item xs={8}>
             <Stack direction="row" spacing={2}>
@@ -72,9 +106,9 @@ export const AccommodationDetails = ({
                   color: colors.textBlack,
                 }}
               >
-                {data.title}
+                {title}
               </Typography>
-              <Rating categorization={data.categorization} />
+              <Rating categorization={categorization} />
             </Stack>
             <Typography
               sx={{
@@ -85,14 +119,20 @@ export const AccommodationDetails = ({
                 marginTop: "1rem",
               }}
             >
-              {data.subtitle}
+              {subtitle}
             </Typography>
             <Stack
               direction="row"
               spacing={1}
               sx={{ marginTop: "3rem", marginBottom: "3rem" }}
             >
-              <Box style={calendarIcon}></Box>
+              <Box
+                sx={{
+                  backgroundImage: `url(${Calendar})`,
+                  width: "23.33px",
+                  height: "25.67px",
+                }}
+              ></Box>
               <Typography
                 sx={{
                   fontFamily: "Roboto",
@@ -115,7 +155,7 @@ export const AccommodationDetails = ({
                 maxWidth: "810px",
               }}
             >
-              {data.description}
+              {description}
             </Typography>
           </Grid>
           <Grid
@@ -154,14 +194,17 @@ export const AccommodationDetails = ({
                   marginBottom: "3rem",
                 }}
               >
-                <Typography>{data.personCount} guests</Typography>
-                <Typography>{data.type}</Typography>
-                <Typography>EUR {data.price} per night</Typography>
-                <Typography>{data.location}</Typography>
-                <Typography>{data.postalCode}</Typography>
+                <Typography>{capacity} guests</Typography>
+                <Typography>{type}</Typography>
+                <Typography>EUR {price} per night</Typography>
+                <Typography>{name}</Typography>
+                <Typography>{postalCode}</Typography>
               </Stack>
               <Button
-                onClick={() => setComponent("reservation")}
+                onClick={function () {
+                  setComponent("reservation");
+                  setBookStayData(accommodation);
+                }}
                 variant="contained"
                 sx={{
                   backgroundColor: colors.mint,

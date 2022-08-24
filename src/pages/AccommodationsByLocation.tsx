@@ -6,12 +6,14 @@ import { useTheme } from "@mui/material/styles";
 import { accommodationTestCard } from "../common/data";
 type AccommodationByLocationProps = {
   setComponent: Function;
+  setRecomendationId: Function;
   location: string;
   properties: number;
 };
 
 export const AccommodationByLocation = ({
   setComponent,
+  setRecomendationId,
   location,
   properties,
 }: AccommodationByLocationProps) => {
@@ -56,6 +58,8 @@ export const AccommodationByLocation = ({
         >
           <Grid item>
             <AccommodationCard
+              id={"5"}
+              setRecomendationId={setRecomendationId}
               setComponent={setComponent}
               title={accommodationTestCard.title}
               location={accommodationTestCard.location}

@@ -11,8 +11,7 @@ type AccommodationDataProps = {
   categorization: number;
   imageUrl: string;
   type: string;
-  location: string;
-  postalCode: string;
+  location: { name: string; postalCode: number };
   price: number;
 };
 export const ReservationCard = ({
@@ -63,8 +62,8 @@ export const ReservationCard = ({
               sx={{ marginTop: "23px" }}
             >
               <Typography>{data.type}</Typography>
-              <Typography>{data.location}</Typography>
-              <Typography>{data.postalCode}</Typography>
+              <Typography>{data.location.name}</Typography>
+              <Typography>{data.location.postalCode}</Typography>
               <Typography>EUR {data.price} per day</Typography>
             </Stack>
           </Box>

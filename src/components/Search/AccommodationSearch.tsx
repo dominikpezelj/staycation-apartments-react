@@ -27,8 +27,8 @@ export const AccommodationSearch = ({
 }: AccommodationSearchProps): JSX.Element => {
   const [formValues, setFormValues] = useState({
     location: "",
-    checkIn: "",
-    checkOut: "",
+    checkIn: new Date(),
+    checkOut: new Date(),
     guests: "",
     accommodation: "",
   });

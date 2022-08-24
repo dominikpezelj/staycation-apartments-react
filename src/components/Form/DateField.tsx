@@ -6,7 +6,7 @@ import { InputCalendar } from "../Icons/InputCalendar";
 
 type DateFieldProps = {
   label: string;
-  value: string;
+  value: Date;
   name: string;
   disableFuture?: boolean;
   onChange(name: string, value: string | null): void;

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Typography, Box, Container, Grid, Button, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Header } from "../components/Header";
@@ -6,21 +7,68 @@ import { Navigation } from "../components/Navigation";
 import { CityCard } from "../components/Cards/CityCard";
 import { AccommodationCard } from "../components/Cards/AccommodationCard";
 import { AccommodationSearch } from "../components/Search/AccommodationSearch";
-
 import { ArrowRight } from "../components/Icons/ArrowRight";
 import { cityCardData, accommodationCardData } from "../common/data";
+
+import axios from "axios";
+
+const PopularLocations = "https://devcademy.herokuapp.com/api/Location";
+const HomesGuestsLove =
+  "https://devcademy.herokuapp.com/api/Accomodations/recommendation";
 
 type HomeProps = {
   setComponent: Function;
   setSearchData: Function;
+  setRecomendationId: Function;
 };
 
-export const Home = ({ setComponent, setSearchData }: HomeProps) => {
+export const Home = ({
+  setComponent,
+  setSearchData,
+  setRecomendationId,
+}: HomeProps) => {
   const { colors } = useTheme();
 
-  const mostPopularItems = cityCardData.slice(0, 2);
-  const popularItems = cityCardData.slice(2, undefined);
+  const [mostPopularLocations, setMostPopularLocations] = useState<any[]>([]);
+  const [popularLocations, setPopularLocations] = useState<any[]>([]);
+  const [popularAccommodations, setPopularAccommodations] = useState<any[]>([]);
+  useEffect(() => {
+    const getLocationData = async () => {
+      const { data, status } = await axios.get(PopularLocations);
+      console.log(status);
+      if (status === 200) {
+        let sorted = await data.sort(
+          (first: any, second: any) =>
+            0 - (first.properties > second.properties ? -1 : 1)
+        );
+        let locations = await sorted.slice(sorted.length - 5, undefined);
 
+        let mostPopularLocations = await locations
+          .slice(locations.length - 2, undefined)
+          .reverse();
+
+        let popularLocations = await locations
+          .slice(locations.length - 5, locations.length - 2)
+          .reverse();
+        if (data) {
+          setMostPopularLocations(mostPopularLocations);
+          setPopularLocations(popularLocations);
+        }
+      } else return;
+    };
+
+    const getHomes = async () => {
+      const { data, status } = await axios.get(HomesGuestsLove);
+      if (status === 200 && data) setPopularAccommodations(data);
+      else return;
+    };
+
+    getHomes();
+    getLocationData();
+  }, []);
+  console.log(mostPopularLocations);
+  console.log(popularLocations);
+  console.log(popularAccommodations);
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -76,13 +124,13 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
               justifyContent: "space-between",
             }}
           >
-            {mostPopularItems.map((item, index) => (
-              <Box sx={{ flex: 1 }} key={item.name}>
+            {mostPopularLocations.map((item: any) => (
+              <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
-                  key={item.name}
-                  city={item.name}
-                  count={item.count}
-                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  city={item.name.trim()}
+                  count={item.properties}
+                  imgUrl={item.imageUrl}
                 />
               </Box>
             ))}
@@ -96,13 +144,13 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
               justifyContent: "space-between",
             }}
           >
-            {popularItems.map((item) => (
-              <Box sx={{ flex: 1 }} key={item.name}>
+            {popularLocations.map((item) => (
+              <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
-                  key={item.name}
-                  city={item.name}
-                  count={item.count}
-                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  city={item.name.trim()}
+                  count={item.properties}
+                  imgUrl={item.imageUrl}
                 />
               </Box>
             ))}
@@ -153,16 +201,20 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
             marginBottom: "5rem",
           }}
         >
-          {accommodationCardData.map((item) => (
-            <Grid item key={item.title}>
+          {popularAccommodations.map((item) => (
+            <Grid item key={item.id}>
               <AccommodationCard
                 setComponent={setComponent}
+                setRecomendationId={setRecomendationId}
+                id={item.id}
                 title={item.title}
-                location={item.location}
+                location={item.location.name}
                 price={item.price}
                 categorization={item.categorization}
-                imgUrl={item.imgUrl}
-                key={item.title}
+                imgUrl={
+                  item.imageUrl === "" ? item.location.imageUrl : item.imageUrl
+                }
+                key={item.id}
               />
             </Grid>
           ))}

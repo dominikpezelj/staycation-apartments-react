@@ -9,16 +9,30 @@ import { bookStayLabel } from "../common/constants";
 //INPUT FIELDS
 import { InputField } from "../components/Form/InputField";
 import { DateField } from "../components/Form/DateField";
+import { ReservationConfirmModal } from "./Modal/ReservationConfirmModal";
 
-export const ReservationForm = () => {
+type ReservationProps = {
+  data: ReservationData;
+};
+type ReservationData = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  categorization: number;
+  type: string;
+  location: { name: string; postalCode: number };
+  price: number;
+};
+
+export const ReservationForm = ({ data }: ReservationProps) => {
   const { colors } = useTheme();
 
   const [formValues, setFormValues] = useState({
     fullName: "",
     email: "",
-    numGuests: "",
-    checkIn: "",
-    checkOut: "",
+    numGuests: 0,
+    checkIn: new Date(),
+    checkOut: new Date(),
   });
 
   const [errMessages, setErrMessages] = useState({
@@ -32,6 +46,11 @@ export const ReservationForm = () => {
     email: false,
     numGuests: false,
   });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsTouched((values) => ({ ...values, [event.target.name]: true }));
@@ -51,6 +70,10 @@ export const ReservationForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!errMessages.fullName && !errMessages.email && !errMessages.numGuests) {
+      setIsOpen(true);
+    }
+
     /* if(formValues.fullName === '') {
       setErrMessages((values) => ({ ...values, fullName: true})) 
     }
@@ -154,6 +177,12 @@ export const ReservationForm = () => {
               >
                 {bookStayLabel}
               </Button>
+              <ReservationConfirmModal
+                open={isOpen}
+                handleClose={handleClose}
+                data={data}
+                formData={formValues}
+              />
             </Box>
           </Box>
         </Stack>
