@@ -11,7 +11,12 @@ import { Car } from "../Icons/Car";
 
 import { SelectField } from "../Form/SelectField";
 
-export const SimpleSearch = () => {
+type SimpleSearchProps = {
+  data: { type: string; value: string }[];
+  setSelectedId(value: string): void;
+};
+
+export const SimpleSearch = ({ data, setSelectedId }: SimpleSearchProps) => {
   const { colors } = useTheme();
 
   const [formValues, setFormValues] = useState({
@@ -24,7 +29,12 @@ export const SimpleSearch = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+    const id = data.find((obj) => {
+      return obj.value === formValues.location;
+    });
+    if (id) {
+      setSelectedId(id.type);
+    } else return;
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -34,8 +44,8 @@ export const SimpleSearch = () => {
             <Box sx={{ flex: 1 }}>
               <SelectField
                 onChange={handleChange}
-                selectOptions={locations}
-                value={formValues.location || locations[0].value}
+                selectOptions={data}
+                value={formValues.location || data[0].value}
                 label={"Where are you going?"}
                 name={"location"}
                 icon={{

@@ -128,9 +128,11 @@ export const Home = ({
               <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
                   key={item.id}
-                  city={item.name.trim()}
+                  city={item?.name}
                   count={item.properties}
                   imgUrl={item.imageUrl}
+                  maxHeight={300}
+                  minHeight={300}
                 />
               </Box>
             ))}
@@ -148,9 +150,11 @@ export const Home = ({
               <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
                   key={item.id}
-                  city={item.name.trim()}
+                  city={item?.name}
                   count={item.properties}
                   imgUrl={item.imageUrl}
+                  maxHeight={300}
+                  minHeight={300}
                 />
               </Box>
             ))}
@@ -208,7 +212,7 @@ export const Home = ({
                 setRecomendationId={setRecomendationId}
                 id={item.id}
                 title={item.title}
-                location={item.location.name}
+                location={item?.location?.name}
                 price={item.price}
                 categorization={item.categorization}
                 imgUrl={

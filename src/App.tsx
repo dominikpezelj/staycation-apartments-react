@@ -11,11 +11,13 @@ import { useState } from "react";
 import { accommodationInfoData } from "./common/data";
 import { AccommodationByLocation } from "./pages/AccommodationsByLocation";
 import { NewPlaceForm } from "./pages/NewPlaceForm";
+import { EditPlaceForm } from "./pages/EditPlaceForm";
 
 function App() {
   const [component, setComponent] = useState("home");
   const [searchData, setSearchData] = useState("");
   const [recomendationId, setRecomendationId] = useState("");
+  const [placeId, setPlaceId] = useState("");
   const [bookStayData, setBookStayData] = useState({
     id: "",
     title: "",
@@ -26,7 +28,6 @@ function App() {
     price: 0,
   });
 
-  console.log(recomendationId);
   return (
     <ThemeProvider theme={theme}>
       {component === "home" && (
@@ -38,7 +39,13 @@ function App() {
       )}
       {component === "locations" && <Locations setComponent={setComponent} />}
       {component === "favorites" && <Favorites setComponent={setComponent} />}
-      {component === "myplaces" && <MyPlaces setComponent={setComponent} />}
+      {component === "myplaces" && (
+        <MyPlaces
+          setComponent={setComponent}
+          setPlaceId={setPlaceId}
+          placeId={placeId}
+        />
+      )}
       {component === "mybookings" && <MyBookings setComponent={setComponent} />}
       {component === "accommodation-details" && (
         <AccommodationDetails
@@ -63,6 +70,9 @@ function App() {
       )}
       {component === "newplaceform" && (
         <NewPlaceForm setComponent={setComponent} />
+      )}
+      {component === "edit-accommodation" && (
+        <EditPlaceForm setComponent={setComponent} id={placeId}></EditPlaceForm>
       )}
     </ThemeProvider>
   );

@@ -3,12 +3,20 @@ import { CSSProperties } from "react";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-type CityCardProps = { city: string; count: number; imgUrl: string };
+type CityCardProps = {
+  city: string;
+  count: number;
+  imgUrl: string;
+  maxHeight?: number;
+  minHeight?: number;
+};
 
 export const CityCard = ({
   city,
   count,
   imgUrl,
+  maxHeight,
+  minHeight,
 }: CityCardProps): JSX.Element => {
   const { colors } = useTheme();
 
@@ -37,6 +45,9 @@ export const CityCard = ({
             zIndex: -1,
             position: "relative",
             display: "block",
+            maxHeight: maxHeight,
+            minHeight: minHeight,
+            borderRadius: "12px",
           }}
           alt={city}
         />
@@ -61,7 +72,7 @@ export const CityCard = ({
           </Box>
           <Box
             sx={{
-              paddingTop: "8px",
+              paddingTop: "25px",
               fontFamily: "Roboto",
               fontWeight: "400",
               fontSize: "20px",

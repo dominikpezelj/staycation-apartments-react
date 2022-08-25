@@ -29,16 +29,17 @@ export const ReservationCard = ({
     >
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <Box
-            sx={{
+          <img
+            src={data.imageUrl}
+            style={{
               margin: "1rem",
-              backgroundImage: `url(${data.imageUrl})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               width: "203px",
               height: "210px",
               borderRadius: "4px",
             }}
+            alt={data.title}
           />
         </Grid>
         <Grid item xs={8}>
