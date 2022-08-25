@@ -8,7 +8,6 @@ import { CityCard } from "../components/Cards/CityCard";
 import { AccommodationCard } from "../components/Cards/AccommodationCard";
 import { AccommodationSearch } from "../components/Search/AccommodationSearch";
 import { ArrowRight } from "../components/Icons/ArrowRight";
-import { cityCardData, accommodationCardData } from "../common/data";
 
 import axios from "axios";
 
