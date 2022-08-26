@@ -3,13 +3,17 @@ import { Navigation } from "../components/Navigation";
 import { AdvancedSearch } from "../components/Search/AdvancedSearch";
 
 type FavoritesProps = {
-  setComponent: Function;
+  searchResult: any[];
+  setSearchResult: Function;
 };
 
-export const Favorites = ({ setComponent }: FavoritesProps) => {
+export const Favorites = ({
+  searchResult,
+  setSearchResult,
+}: FavoritesProps) => {
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -17,7 +21,10 @@ export const Favorites = ({ setComponent }: FavoritesProps) => {
           marginBottom: "3rem",
         }}
       >
-        <AdvancedSearch />
+        <AdvancedSearch
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
+        />
       </Container>
     </div>
   );
