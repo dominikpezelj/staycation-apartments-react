@@ -5,7 +5,6 @@ import { ReservationCard } from "../components/Cards/ReservationCard";
 import { accommodationInfoData } from "../common/data";
 
 type ReservationProps = {
-  setComponent: Function;
   reservationData: ReservationData;
 };
 
@@ -19,13 +18,10 @@ type ReservationData = {
   price: number;
 };
 
-export const Reservation = ({
-  setComponent,
-  reservationData,
-}: ReservationProps) => {
+export const Reservation = ({ reservationData }: ReservationProps) => {
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

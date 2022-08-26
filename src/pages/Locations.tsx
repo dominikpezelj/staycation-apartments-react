@@ -6,11 +6,8 @@ import { useTheme } from "@mui/material/styles";
 import { CityCard } from "../components/Cards/CityCard";
 import axios from "axios";
 const locationsURL = "https://devcademy.herokuapp.com/api/Location";
-type LocationsProps = {
-  setComponent: Function;
-};
 
-export const Locations = ({ setComponent }: LocationsProps) => {
+export const Locations = () => {
   const { colors } = useTheme();
 
   const [locations, setLocations] = useState<any>();
@@ -43,7 +40,7 @@ export const Locations = ({ setComponent }: LocationsProps) => {
 
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

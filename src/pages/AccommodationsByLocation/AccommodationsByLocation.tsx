@@ -11,7 +11,6 @@ import { AccommodationByLocationProps, AccommodationType } from "./Types";
 const accommodationURL = "https://devcademy.herokuapp.com/api/Accomodations/";
 
 export const AccommodationByLocation = ({
-  setComponent,
   setRecomendationId,
   setSearchResult,
   searchResult,
@@ -37,7 +36,7 @@ export const AccommodationByLocation = ({
 
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -84,7 +83,6 @@ export const AccommodationByLocation = ({
             {[searchResult].map((item: any) => (
               <Grid item key={item.id}>
                 <AccommodationCard
-                  setComponent={setComponent}
                   setRecomendationId={setRecomendationId}
                   id={item.accomodation.id}
                   title={item.accomodation.title}

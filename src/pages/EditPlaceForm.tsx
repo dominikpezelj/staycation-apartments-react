@@ -22,26 +22,11 @@ const getValues = "https://devcademy.herokuapp.com/api/Accomodations/";
 
 type EditPlaceFormProps = {
   id: string;
-  setComponent: Function;
-};
-
-type FormValues = {
-  listingName: string;
-  shortDesc: string;
-  longDesc: string;
-  categorization: number;
-  accommodation: string;
-  capacity: number;
-  price: number;
-  listingImage: string;
-  postalCode: number;
-  location: string;
-  cancelation: boolean;
 };
 
 type FormInputValue = string | number | boolean | null;
 
-export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
+export const EditPlaceForm = ({ id }: EditPlaceFormProps) => {
   const { colors } = useTheme();
 
   useEffect(() => {
@@ -142,7 +127,7 @@ export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
   };
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

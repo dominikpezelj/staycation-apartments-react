@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
+import { Link } from "react-router-dom";
 type PlaceCardProps = {
   id: string;
   title: string;
@@ -16,7 +16,6 @@ type PlaceCardProps = {
   imgUrl: string;
   setPlaceId: Function;
   handleOpen: Function;
-  setComponent: Function;
 };
 
 export const PlaceCard = ({
@@ -27,7 +26,6 @@ export const PlaceCard = ({
   imgUrl,
   setPlaceId,
   handleOpen,
-  setComponent,
 }: PlaceCardProps): JSX.Element => {
   const { colors } = useTheme();
 
@@ -38,7 +36,6 @@ export const PlaceCard = ({
 
   const handleEdit = () => {
     setPlaceId(id);
-    setComponent("edit-accommodation");
   };
   return (
     <Card sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}>
@@ -92,13 +89,15 @@ export const PlaceCard = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="small"
-          sx={{ color: colors.mint, fontWeight: "500", fontSize: "14px" }}
-          onClick={handleEdit}
-        >
-          Edit
-        </Button>
+        <Link to={"/edit-accommodation"} style={{ textDecoration: "none" }}>
+          <Button
+            size="small"
+            sx={{ color: colors.mint, fontWeight: "500", fontSize: "14px" }}
+            onClick={handleEdit}
+          >
+            Edit
+          </Button>
+        </Link>
         <Button
           size="small"
           sx={{ color: colors.errorRed, fontWeight: "500", fontSize: "14px" }}

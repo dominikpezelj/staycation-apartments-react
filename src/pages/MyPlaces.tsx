@@ -14,20 +14,15 @@ import axios from "axios";
 import { PlaceCard } from "../components/Cards/PlaceCard";
 import { MyPlaceDeleteModal } from "src/components/Modal/MyPlaceDeleteModal";
 import { Footer } from "src/components/Footer";
-
+import { Link } from "react-router-dom";
 const accommodationsURL = "https://devcademy.herokuapp.com/api/Accomodations";
 
 type MyPlacesProps = {
   placeId: string;
-  setComponent: Function;
   setPlaceId: Function;
 };
 
-export const MyPlaces = ({
-  setComponent,
-  setPlaceId,
-  placeId,
-}: MyPlacesProps) => {
+export const MyPlaces = ({ setPlaceId, placeId }: MyPlacesProps) => {
   const { colors } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,7 +42,7 @@ export const MyPlaces = ({
   if (!accommodationData) return null;
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{
@@ -72,20 +67,20 @@ export const MyPlaces = ({
           >
             My places
           </Typography>
-
-          <Button
-            variant="contained"
-            onClick={() => setComponent("newplaceform")}
-            sx={{
-              background: colors.mint,
-              paddingX: "32px",
-              color: colors.white,
-              fontSize: "15px",
-              fontWeight: "500",
-            }}
-          >
-            Add new place
-          </Button>
+          <Link to={"/my-places/new"} style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              sx={{
+                background: colors.mint,
+                paddingX: "32px",
+                color: colors.white,
+                fontSize: "15px",
+                fontWeight: "500",
+              }}
+            >
+              Add new place
+            </Button>
+          </Link>
         </Box>
 
         <ImageList cols={4} rowHeight={250} gap={10}>
@@ -93,7 +88,6 @@ export const MyPlaces = ({
             <PlaceCard
               setPlaceId={setPlaceId}
               handleOpen={handleOpen}
-              setComponent={setComponent}
               key={item.id}
               id={item.id}
               title={item.title}

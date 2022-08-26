@@ -3,19 +3,17 @@ import { Navigation } from "../components/Navigation";
 import { AdvancedSearch } from "../components/Search/AdvancedSearch";
 
 type FavoritesProps = {
-  setComponent: Function;
   searchResult: any[];
   setSearchResult: Function;
 };
 
 export const Favorites = ({
-  setComponent,
   searchResult,
   setSearchResult,
 }: FavoritesProps) => {
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

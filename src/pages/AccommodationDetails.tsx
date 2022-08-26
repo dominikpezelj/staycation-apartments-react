@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { Rating } from "../components/Rating";
 import { Navigation } from "../components/Navigation";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 type dataProps = {
   title: string;
   subtitle: string;
@@ -27,13 +27,11 @@ type dataProps = {
 
 type AccommodationDetailsProps = {
   id: string;
-  setComponent: Function;
   setBookStayData: Function;
 };
 
 export const AccommodationDetails = ({
   id,
-  setComponent,
   setBookStayData,
 }: AccommodationDetailsProps) => {
   const { colors, shadow } = useTheme();
@@ -76,7 +74,7 @@ export const AccommodationDetails = ({
 
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
 
       <Box sx={{ paddingLeft: "7.5rem", paddingRight: "7.5rem" }}>
         <img
@@ -196,22 +194,23 @@ export const AccommodationDetails = ({
                 <Typography>{name}</Typography>
                 <Typography>{postalCode}</Typography>
               </Stack>
-              <Button
-                onClick={function () {
-                  setComponent("reservation");
-                  setBookStayData(accommodation);
-                }}
-                variant="contained"
-                sx={{
-                  backgroundColor: colors.mint,
-                  width: "100%",
-                  fontWeight: "500",
-                  fontSize: "15px",
-                  lineHeight: "26px",
-                }}
-              >
-                Book your stay
-              </Button>
+              <Link to={"/reservation"} style={{ textDecoration: "none" }}>
+                <Button
+                  onClick={function () {
+                    setBookStayData(accommodation);
+                  }}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: colors.mint,
+                    width: "100%",
+                    fontWeight: "500",
+                    fontSize: "15px",
+                    lineHeight: "26px",
+                  }}
+                >
+                  Book your stay
+                </Button>
+              </Link>
             </Paper>
           </Grid>
         </Grid>

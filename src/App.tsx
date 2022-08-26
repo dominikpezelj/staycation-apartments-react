@@ -8,7 +8,7 @@ import { MyBookings } from "./pages/MyBookings";
 import { AccommodationDetails } from "./pages/AccommodationDetails";
 import { Reservation } from "./pages/Reservation";
 import { useState } from "react";
-import { accommodationInfoData } from "./common/data";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AccommodationByLocation } from "./pages/AccommodationsByLocation/AccommodationsByLocation";
 import { NewPlaceForm } from "./pages/NewPlaceForm";
 import { EditPlaceForm } from "./pages/EditPlaceForm";
@@ -32,7 +32,67 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {component === "login" && <Login setComponent={setComponent} />}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                setSearchData={setSearchData}
+                setRecomendationId={setRecomendationId}
+                setSearchResult={setSearchResult}
+              />
+            }
+          />
+          <Route path="/locations" element={<Locations />} />
+          <Route
+            path="/favorites"
+            element={
+              <Favorites
+                searchResult={searchResult}
+                setSearchResult={setSearchResult}
+              />
+            }
+          />
+          <Route
+            path="/my-places"
+            element={<MyPlaces setPlaceId={setPlaceId} placeId={placeId} />}
+          />
+          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route
+            path="/accommodations/:accommodationId"
+            element={
+              <AccommodationDetails
+                id={recomendationId}
+                setBookStayData={setBookStayData}
+              />
+            }
+          />
+          <Route path="/my-places/new" element={<NewPlaceForm />} />
+          <Route
+            path="/reservation"
+            element={<Reservation reservationData={bookStayData} />}
+          />
+          <Route
+            path="/accommodations"
+            element={
+              <AccommodationByLocation
+                setRecomendationId={setRecomendationId}
+                location={searchData}
+                searchResult={searchResult}
+                setSearchResult={setSearchResult}
+              />
+            }
+          />
+
+          <Route
+            path="/edit-accommodation"
+            element={<EditPlaceForm id={placeId}></EditPlaceForm>}
+          />
+        </Routes>
+      </BrowserRouter>
+      {/* {component === "login" && <Login setComponent={setComponent} />}
       {component === "home" && (
         <Home
           setComponent={setComponent}
@@ -84,7 +144,7 @@ function App() {
       )}
       {component === "edit-accommodation" && (
         <EditPlaceForm setComponent={setComponent} id={placeId}></EditPlaceForm>
-      )}
+      )} */}
     </ThemeProvider>
   );
 }

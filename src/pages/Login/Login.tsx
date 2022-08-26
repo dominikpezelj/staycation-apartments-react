@@ -12,11 +12,11 @@ import { Navigation } from "src/components/Navigation";
 import { useTheme } from "@mui/material/styles";
 import { InputField } from "src/components/Form/InputField";
 import { useEffect, useState } from "react";
-type LoginProps = {
-  setComponent: Function;
-};
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 type FormInputValue = string | number | boolean | null;
-export const Login = ({ setComponent }: LoginProps) => {
+export const Login = () => {
+  const navigate = useNavigate();
   const { colors } = useTheme();
 
   const loginEmail = "admin@admin.com";
@@ -62,7 +62,7 @@ export const Login = ({ setComponent }: LoginProps) => {
 
     if (validateEmail && validatePassword && validateCheckbox) {
       localStorage.setItem("userToken", "bnh5yzdirjinqaorq0ox1tf383nb3xr");
-      setComponent("home");
+      navigate("/");
     } else alert("Login validation fails.");
   };
 
@@ -75,7 +75,7 @@ export const Login = ({ setComponent }: LoginProps) => {
   }, [formValues]);
   return (
     <Box>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <img
         src={loginImg}
         style={{
@@ -157,6 +157,7 @@ export const Login = ({ setComponent }: LoginProps) => {
                 }
                 label="I accept the Terms and Conditions"
               />
+
               <Button
                 variant="contained"
                 type="submit"

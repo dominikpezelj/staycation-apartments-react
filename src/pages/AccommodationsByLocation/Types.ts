@@ -1,7 +1,6 @@
 
 
 export type AccommodationByLocationProps = {
-    setComponent: Function;
     setRecomendationId: Function;
     searchResult: any[];
     setSearchResult: Function,

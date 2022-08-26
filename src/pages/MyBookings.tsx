@@ -1,14 +1,10 @@
 import { Container, Box } from "@mui/material";
 import { Navigation } from "../components/Navigation";
 
-type MyBookingsProps = {
-  setComponent: Function;
-};
-
-export const MyBookings = ({ setComponent }: MyBookingsProps) => {
+export const MyBookings = () => {
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

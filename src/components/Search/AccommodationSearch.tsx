@@ -16,12 +16,11 @@ import { SelectField } from "../Form/SelectField";
 import { Profile } from "../Icons/Profile";
 import { Car } from "../Icons/Car";
 import axios from "axios";
-import { format } from "path";
+import { Link } from "react-router-dom";
 
 const accommodationURL = "https://devcademy.herokuapp.com/api/Accomodations";
 const reservationsURL = "https://devcademy.herokuapp.com/api/Reservation";
 type AccommodationSearchProps = {
-  setComponent: Function;
   setSearchData: Function;
   data: { type: string; value: string }[];
   setSelectedId(value: string): void;
@@ -29,7 +28,6 @@ type AccommodationSearchProps = {
 };
 
 export const AccommodationSearch = ({
-  setComponent,
   setSearchData,
   setSearchResult,
   data,
@@ -105,7 +103,6 @@ export const AccommodationSearch = ({
       alert("No result");
     } else {
       setSelectedId(filter.accommodationId);
-      setComponent("accommodationbylocation");
       setSearchData(formValues.location);
     }
   };
@@ -186,19 +183,20 @@ export const AccommodationSearch = ({
             ),
           }}
         />
-
-        <Button
-          variant={"contained"}
-          type={"submit"}
-          sx={{
-            background: colors.mint,
-            color: colors.white,
-            maxWidth: "9.25rem",
-            height: "3.5rem",
-          }}
-        >
-          {searchLabel}
-        </Button>
+        <Link to={"/accommodations"} style={{ textDecoration: "none" }}>
+          <Button
+            variant={"contained"}
+            type={"submit"}
+            sx={{
+              background: colors.mint,
+              color: colors.white,
+              maxWidth: "9.25rem",
+              height: "3.5rem",
+            }}
+          >
+            {searchLabel}
+          </Button>
+        </Link>
       </Stack>
     </form>
   );

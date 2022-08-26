@@ -8,7 +8,7 @@ import { CityCard } from "../components/Cards/CityCard";
 import { AccommodationCard } from "../components/Cards/AccommodationCard";
 import { AccommodationSearch } from "../components/Search/AccommodationSearch";
 import { ArrowRight } from "../components/Icons/ArrowRight";
-
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const PopularLocations = "https://devcademy.herokuapp.com/api/Location";
@@ -16,14 +16,12 @@ const HomesGuestsLove =
   "https://devcademy.herokuapp.com/api/Accomodations/recommendation";
 
 type HomeProps = {
-  setComponent: Function;
   setSearchData: Function;
   setRecomendationId: Function;
   setSearchResult: Function;
 };
 
 export const Home = ({
-  setComponent,
   setSearchData,
   setRecomendationId,
   setSearchResult,
@@ -80,10 +78,9 @@ export const Home = ({
 
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Header />
       <AccommodationSearch
-        setComponent={setComponent}
         setSearchData={setSearchData}
         setSelectedId={setSelectedValue}
         setSearchResult={setSearchResult}
@@ -115,14 +112,14 @@ export const Home = ({
           >
             Popular locations
           </Typography>
-
-          <Button
-            onClick={() => setComponent("locations")}
-            sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
-            endIcon={<ArrowRight />}
-          >
-            View all locations
-          </Button>
+          <Link to={"locations"} style={{ textDecoration: "none" }}>
+            <Button
+              sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
+              endIcon={<ArrowRight />}
+            >
+              View all locations
+            </Button>
+          </Link>
         </Box>
 
         {/* Stack flex-wrap 
@@ -198,13 +195,14 @@ export const Home = ({
           >
             Homes guests love
           </Typography>
-          <Button
-            onClick={() => setComponent("favorites")}
-            sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
-            endIcon={<ArrowRight />}
-          >
-            View all homes
-          </Button>
+          <Link to={"favorites"} style={{ textDecoration: "none" }}>
+            <Button
+              sx={{ color: colors.mint, fontSize: "15px", fontWeight: "500" }}
+              endIcon={<ArrowRight />}
+            >
+              View all homes
+            </Button>
+          </Link>
         </Box>
 
         <Grid
@@ -220,7 +218,6 @@ export const Home = ({
           {popularAccommodations.map((item) => (
             <Grid item key={item.id}>
               <AccommodationCard
-                setComponent={setComponent}
                 setRecomendationId={setRecomendationId}
                 id={item.id}
                 title={item.title}

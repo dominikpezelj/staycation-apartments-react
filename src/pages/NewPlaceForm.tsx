@@ -22,13 +22,9 @@ import axios from "axios";
 
 const postAccommodation = "https://devcademy.herokuapp.com/api/Accomodations";
 
-type NewPlaceFormProps = {
-  setComponent: Function;
-};
-
 type FormInputValue = string | number | boolean | null;
 
-export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
+export const NewPlaceForm = () => {
   const { colors } = useTheme();
 
   const [formValues, setFormValues] = useState({
@@ -109,7 +105,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
   }, [formValues]);
   return (
     <div>
-      <Navigation setComponent={setComponent} />
+      <Navigation />
       <Container
         maxWidth={"xl"}
         sx={{

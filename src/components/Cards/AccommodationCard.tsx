@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "../Rating";
-
+import { Link } from "react-router-dom";
 type AccommodationCardProps = {
   id: string;
   title: string;
@@ -15,7 +15,6 @@ type AccommodationCardProps = {
   price: number;
   categorization: number;
   imgUrl: string;
-  setComponent: Function;
   setRecomendationId: Function;
 };
 
@@ -26,70 +25,70 @@ export const AccommodationCard = ({
   price,
   categorization,
   imgUrl,
-  setComponent,
   setRecomendationId,
 }: AccommodationCardProps): JSX.Element => {
   const { colors } = useTheme();
 
   return (
-    <Card
-      sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}
-      onClick={function () {
-        setComponent("accommodation-details");
-        setRecomendationId(id);
-      }}
-    >
-      <CardActionArea>
-        <CardMedia
-          sx={{
-            borderRadius: "12px",
-            width: "18.5625rem",
-            height: "16.625rem",
-          }}
-          component="img"
-          image={imgUrl}
-          alt=""
-        />
-        <CardContent>
-          <Typography
-            component="div"
+    <Link to={"/accommodations/" + id} style={{ textDecoration: "none" }}>
+      <Card
+        sx={{ maxWidth: "18.5625rem", boxShadow: "0" }}
+        onClick={function () {
+          setRecomendationId(id);
+        }}
+      >
+        <CardActionArea>
+          <CardMedia
             sx={{
-              fontFamily: "Roboto",
-              fontWeight: "500",
-              fontSize: "20px",
-              color: colors.textBlack,
-              marginBottom: "0.5rem",
+              borderRadius: "12px",
+              width: "18.5625rem",
+              height: "16.625rem",
             }}
-          >
-            {title}
-          </Typography>
-          <Typography
-            component="div"
-            sx={{
-              fontFamily: "Roboto",
-              fontWeight: "400",
-              fontSize: "15px",
-              color: colors.cardGray,
-              marginBottom: "0.5rem",
-            }}
-          >
-            {location}
-          </Typography>
-          <Typography
-            component="div"
-            sx={{
-              fontFamily: "Roboto",
-              fontWeight: "500",
-              fontSize: "15px",
-              color: colors.textMenuItems,
-              marginBottom: "0.5rem",
-            }}
-          >
-            EUR {price}
-          </Typography>
-          <Rating categorization={categorization} />
-        </CardContent>
-      </CardActionArea>
-    </Card>
+            component="img"
+            image={imgUrl}
+            alt=""
+          />
+          <CardContent>
+            <Typography
+              component="div"
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "500",
+                fontSize: "20px",
+                color: colors.textBlack,
+                marginBottom: "0.5rem",
+              }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              component="div"
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                fontSize: "15px",
+                color: colors.cardGray,
+                marginBottom: "0.5rem",
+              }}
+            >
+              {location}
+            </Typography>
+            <Typography
+              component="div"
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "500",
+                fontSize: "15px",
+                color: colors.textMenuItems,
+                marginBottom: "0.5rem",
+              }}
+            >
+              EUR {price}
+            </Typography>
+            <Rating categorization={categorization} />
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
