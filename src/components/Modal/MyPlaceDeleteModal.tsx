@@ -28,9 +28,8 @@ export const MyPlaceDeleteModal = ({
 
   const removeAccommodation = async () => {
     const response = await axios.delete(accomodationURL + id);
-    console.log(response.status);
+    if (response.status === 202) handleClose(true);
   };
-  console.log(id);
   return (
     <div>
       <Modal

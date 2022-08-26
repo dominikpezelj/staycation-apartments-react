@@ -19,40 +19,45 @@ type HomeProps = {
   setComponent: Function;
   setSearchData: Function;
   setRecomendationId: Function;
+  setSearchResult: Function;
 };
 
 export const Home = ({
   setComponent,
   setSearchData,
   setRecomendationId,
+  setSearchResult,
 }: HomeProps) => {
   const { colors } = useTheme();
 
   const [mostPopularLocations, setMostPopularLocations] = useState<any[]>([]);
   const [popularLocations, setPopularLocations] = useState<any[]>([]);
   const [popularAccommodations, setPopularAccommodations] = useState<any[]>([]);
+  const [selectOptions, setSelectOptions] = useState<any>();
+  const [selectedValue, setSelectedValue] = useState("");
   useEffect(() => {
     const getLocationData = async () => {
       const { data, status } = await axios.get(PopularLocations);
-      console.log(status);
       if (status === 200) {
-        let sorted = await data.sort(
-          (first: any, second: any) =>
-            0 - (first.properties > second.properties ? -1 : 1)
-        );
-        let locations = await sorted.slice(sorted.length - 5, undefined);
-
-        let mostPopularLocations = await locations
-          .slice(locations.length - 2, undefined)
-          .reverse();
-
-        let popularLocations = await locations
-          .slice(locations.length - 5, locations.length - 2)
-          .reverse();
         if (data) {
+          const sorted = data.sort(
+            (first: any, second: any) =>
+              0 - (first.properties > second.properties ? -1 : 1)
+          );
+          const locations = sorted.slice(sorted.length - 5, undefined);
+
+          const mostPopularLocations = locations
+            .slice(locations.length - 2, undefined)
+            .reverse();
+
+          const popularLocations = locations
+            .slice(locations.length - 5, locations.length - 2)
+            .reverse();
+
           setMostPopularLocations(mostPopularLocations);
           setPopularLocations(popularLocations);
-        }
+          setSelectOptions(data);
+        } else return;
       } else return;
     };
 
@@ -64,10 +69,15 @@ export const Home = ({
 
     getHomes();
     getLocationData();
-  }, []);
-  console.log(mostPopularLocations);
-  console.log(popularLocations);
-  console.log(popularAccommodations);
+  }, [selectedValue]);
+
+  if (!selectOptions) return null;
+
+  const result = selectOptions.map(({ id, name }: any) => ({
+    type: id,
+    value: name,
+  }));
+
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -75,6 +85,9 @@ export const Home = ({
       <AccommodationSearch
         setComponent={setComponent}
         setSearchData={setSearchData}
+        setSelectedId={setSelectedValue}
+        setSearchResult={setSearchResult}
+        data={result}
       />
       <Container
         maxWidth={"xl"}

@@ -66,7 +66,6 @@ export const ReservationConfirmModal = ({
           personCount: formData.numGuests,
           confirmed: true,
         });
-        console.log(result.status);
         if (result.status === 201) handleClose(true);
       } catch (error: any) {
         console.error(error.response.data);

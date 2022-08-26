@@ -78,8 +78,7 @@ export const ReservationForm = ({ data }: ReservationProps) => {
       setErrMessages((values) => ({ ...values, fullName: true})) 
     }
     setErrMessages((values) => ({ ...values, fullName: false})) 
-    console.log(formValues);
-    console.log(errMessages.fullName) */
+   */
   };
 
   const now = moment().format("DD-MM-YYYY");

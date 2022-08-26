@@ -38,10 +38,8 @@ export const MyPlaces = ({
   useEffect(() => {
     const getAllAccommodations = async () => {
       const response = await axios.get(accommodationsURL);
-      console.log(response.status);
       if (response.status === 200) {
         setAccommodationData(response.data);
-        console.log(response.data);
       } else return;
     };
     getAllAccommodations();

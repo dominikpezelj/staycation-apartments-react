@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Typography, Grid, Stack, Button, Box, Paper } from "@mui/material";
-import HeaderImage from "../assets/images/accommodation-info.jpg";
 import Calendar from "../assets/images/calendar.svg";
 import { useTheme } from "@mui/material/styles";
 import { Rating } from "../components/Rating";
@@ -19,7 +18,6 @@ type dataProps = {
   freeCancelation: boolean;
   price: number;
   location: {
-    idLocation: string;
     name: string;
     imageUri: string;
     postalCode: number;
@@ -47,7 +45,6 @@ export const AccommodationDetails = ({
     const getAccommodationById = async () => {
       const { data, status } = await axios.get(axiosGet);
 
-      console.log(data.id);
       setAccommodation(data);
     };
 
@@ -70,10 +67,9 @@ export const AccommodationDetails = ({
   }: dataProps = accommodation;
 
   const {
-    location: { idLocation, name, imageUri, postalCode, properties },
+    location: { name, postalCode },
   }: dataProps = accommodation;
 
-  console.log(accommodation);
   const cancelation = freeCancelation
     ? "Free cancellation available"
     : "Free cancellation is not available";

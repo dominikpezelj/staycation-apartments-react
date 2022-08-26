@@ -23,7 +23,6 @@ export const Reservation = ({
   setComponent,
   reservationData,
 }: ReservationProps) => {
-  console.log(reservationData);
   return (
     <div>
       <Navigation setComponent={setComponent} />

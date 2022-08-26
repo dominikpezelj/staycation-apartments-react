@@ -9,7 +9,7 @@ import { AccommodationDetails } from "./pages/AccommodationDetails";
 import { Reservation } from "./pages/Reservation";
 import { useState } from "react";
 import { accommodationInfoData } from "./common/data";
-import { AccommodationByLocation } from "./pages/AccommodationsByLocation";
+import { AccommodationByLocation } from "./pages/AccommodationsByLocation/AccommodationsByLocation";
 import { NewPlaceForm } from "./pages/NewPlaceForm";
 import { EditPlaceForm } from "./pages/EditPlaceForm";
 
@@ -17,6 +17,7 @@ function App() {
   const [component, setComponent] = useState("home");
   const [searchData, setSearchData] = useState("");
   const [recomendationId, setRecomendationId] = useState("");
+  const [searchResult, setSearchResult] = useState<any[]>([]);
   const [placeId, setPlaceId] = useState("");
   const [bookStayData, setBookStayData] = useState({
     id: "",
@@ -35,10 +36,17 @@ function App() {
           setComponent={setComponent}
           setSearchData={setSearchData}
           setRecomendationId={setRecomendationId}
+          setSearchResult={setSearchResult}
         />
       )}
       {component === "locations" && <Locations setComponent={setComponent} />}
-      {component === "favorites" && <Favorites setComponent={setComponent} />}
+      {component === "favorites" && (
+        <Favorites
+          setComponent={setComponent}
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
+        />
+      )}
       {component === "myplaces" && (
         <MyPlaces
           setComponent={setComponent}
@@ -65,7 +73,8 @@ function App() {
           setComponent={setComponent}
           setRecomendationId={setRecomendationId}
           location={searchData}
-          properties={1000}
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
         />
       )}
       {component === "newplaceform" && (

@@ -20,13 +20,11 @@ export const Locations = ({ setComponent }: LocationsProps) => {
   useEffect(() => {
     const getAllLocations = async () => {
       const response = await axios.get(locationsURL);
-      console.log(response.status);
       if (response.status === 200) {
         if (selectedValue) {
           const result = response.data.find((obj: { id: string }) => {
             return obj.id === selectedValue;
           });
-          console.log([result]);
           setLocations([result]);
         } else {
           setLocations(response.data);
@@ -38,13 +36,11 @@ export const Locations = ({ setComponent }: LocationsProps) => {
   }, [selectedValue]);
   if (!locations) return null;
 
-  //console.log(locations);
   const result = selectOptions.map(({ id, name }: any) => ({
     type: id,
     value: name,
   }));
 
-  console.log(result);
   return (
     <div>
       <Navigation setComponent={setComponent} />

@@ -40,7 +40,6 @@ export const InputField = ({
   onBlur,
 }: InputFieldProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //console.log(event.target.name + event.target.value);
     onChange(event.target.name, event.target.value);
   };
 

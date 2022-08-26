@@ -60,7 +60,6 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
 
   const handleChange = (name: string, value: FormInputValue) => {
     setFormValues((values) => ({ ...values, [name]: value }));
-    console.log(name + value);
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -80,7 +79,10 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
           subtitle: "null",
           description: formValues.longDesc,
           shortDescription: formValues.shortDesc,
-          type: formValues.accommodation,
+          type:
+            formValues.accommodation === "Mobile home"
+              ? "MobileHome"
+              : formValues.accommodation,
           categorization: formValues.categorization,
           personCount: Number(formValues.capacity),
           imageUrl: formValues.listingImage,
@@ -94,12 +96,8 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
           },
           capacity: Number(formValues.capacity),
         });
-        console.log(response.status);
-      } catch (error: any) {
-        console.log(error.response.data);
-      }
+      } catch (error: any) {}
     } else return;
-    console.log(formValues);
   };
 
   useEffect(() => {

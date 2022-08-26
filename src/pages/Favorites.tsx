@@ -4,9 +4,15 @@ import { AdvancedSearch } from "../components/Search/AdvancedSearch";
 
 type FavoritesProps = {
   setComponent: Function;
+  searchResult: any[];
+  setSearchResult: Function;
 };
 
-export const Favorites = ({ setComponent }: FavoritesProps) => {
+export const Favorites = ({
+  setComponent,
+  searchResult,
+  setSearchResult,
+}: FavoritesProps) => {
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -17,7 +23,10 @@ export const Favorites = ({ setComponent }: FavoritesProps) => {
           marginBottom: "3rem",
         }}
       >
-        <AdvancedSearch />
+        <AdvancedSearch
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
+        />
       </Container>
     </div>
   );

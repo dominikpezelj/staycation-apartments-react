@@ -43,12 +43,11 @@ type FormInputValue = string | number | boolean | null;
 
 export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
   const { colors } = useTheme();
-  console.log("Edit ID: " + id);
 
   useEffect(() => {
     const getFormValues = async () => {
       const response = await axios.get(getValues + id);
-      console.log(response.data);
+
       if (response.status === 200) {
         if (response.data) {
           let data = response.data;
@@ -101,7 +100,6 @@ export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
 
   const handleChange = (name: string, value: FormInputValue) => {
     setFormValues((values) => ({ ...values, [name]: value }));
-    console.log(name + value);
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -122,7 +120,10 @@ export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
           subtitle: "null",
           description: formValues.longDesc,
           shortDescription: formValues.shortDesc,
-          type: formValues.accommodation,
+          type:
+            formValues.accommodation === "Mobile home"
+              ? "MobileHome"
+              : formValues.accommodation,
           categorization: formValues.categorization,
           personCount: Number(formValues.capacity),
           imageUrl: formValues.listingImage,
@@ -136,7 +137,6 @@ export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
           },
           capacity: Number(formValues.capacity),
         });
-        console.log(response.status);
       } catch (error) {}
     }
   };
