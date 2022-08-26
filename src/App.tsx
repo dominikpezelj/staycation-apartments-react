@@ -12,9 +12,10 @@ import { accommodationInfoData } from "./common/data";
 import { AccommodationByLocation } from "./pages/AccommodationsByLocation/AccommodationsByLocation";
 import { NewPlaceForm } from "./pages/NewPlaceForm";
 import { EditPlaceForm } from "./pages/EditPlaceForm";
+import { Login } from "./pages/Login/Login";
 
 function App() {
-  const [component, setComponent] = useState("home");
+  const [component, setComponent] = useState("login");
   const [searchData, setSearchData] = useState("");
   const [recomendationId, setRecomendationId] = useState("");
   const [searchResult, setSearchResult] = useState<any[]>([]);
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      {component === "login" && <Login setComponent={setComponent} />}
       {component === "home" && (
         <Home
           setComponent={setComponent}

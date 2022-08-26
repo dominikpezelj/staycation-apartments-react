@@ -22,6 +22,10 @@ export const Navigation = ({ setComponent }: NavigationProps) => {
     padding: "0px 76px",
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    setComponent("login");
+  };
   return (
     <AppBar style={appBarClass}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -59,7 +63,7 @@ export const Navigation = ({ setComponent }: NavigationProps) => {
               key={item}
             >
               <Typography
-              key={item}
+                key={item}
                 textAlign="center"
                 sx={{
                   textDecoration: "underline",
@@ -72,6 +76,7 @@ export const Navigation = ({ setComponent }: NavigationProps) => {
           ))}
         </Stack>
         <Button
+          onClick={handleLogOut}
           sx={{
             color: colors.textMenuItems,
             fontFamily: "Roboto",
