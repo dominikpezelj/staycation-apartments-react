@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Typography, Box, Container, Grid, Button, Stack } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Header } from "../components/Header";
@@ -6,20 +7,76 @@ import { Navigation } from "../components/Navigation";
 import { CityCard } from "../components/Cards/CityCard";
 import { AccommodationCard } from "../components/Cards/AccommodationCard";
 import { AccommodationSearch } from "../components/Search/AccommodationSearch";
-
 import { ArrowRight } from "../components/Icons/ArrowRight";
-import { cityCardData, accommodationCardData } from "../common/data";
+
+import axios from "axios";
+
+const PopularLocations = "https://devcademy.herokuapp.com/api/Location";
+const HomesGuestsLove =
+  "https://devcademy.herokuapp.com/api/Accomodations/recommendation";
 
 type HomeProps = {
   setComponent: Function;
   setSearchData: Function;
+  setRecomendationId: Function;
+  setSearchResult: Function;
 };
 
-export const Home = ({ setComponent, setSearchData }: HomeProps) => {
+export const Home = ({
+  setComponent,
+  setSearchData,
+  setRecomendationId,
+  setSearchResult,
+}: HomeProps) => {
   const { colors } = useTheme();
 
-  const mostPopularItems = cityCardData.slice(0, 2);
-  const popularItems = cityCardData.slice(2, undefined);
+  const [mostPopularLocations, setMostPopularLocations] = useState<any[]>([]);
+  const [popularLocations, setPopularLocations] = useState<any[]>([]);
+  const [popularAccommodations, setPopularAccommodations] = useState<any[]>([]);
+  const [selectOptions, setSelectOptions] = useState<any>();
+  const [selectedValue, setSelectedValue] = useState("");
+  useEffect(() => {
+    const getLocationData = async () => {
+      const { data, status } = await axios.get(PopularLocations);
+      if (status === 200) {
+        if (data) {
+          const sorted = data.sort(
+            (first: any, second: any) =>
+              0 - (first.properties > second.properties ? -1 : 1)
+          );
+          const locations = sorted.slice(sorted.length - 5, undefined);
+
+          const mostPopularLocations = locations
+            .slice(locations.length - 2, undefined)
+            .reverse();
+
+          const popularLocations = locations
+            .slice(locations.length - 5, locations.length - 2)
+            .reverse();
+
+          setMostPopularLocations(mostPopularLocations);
+          setPopularLocations(popularLocations);
+          setSelectOptions(data);
+        } else return;
+      } else return;
+    };
+
+    const getHomes = async () => {
+      const { data, status } = await axios.get(HomesGuestsLove);
+      if (status === 200 && data) setPopularAccommodations(data);
+      else return;
+    };
+
+    getHomes();
+    getLocationData();
+  }, [selectedValue]);
+
+  if (!selectOptions) return null;
+
+  const result = selectOptions.map(({ id, name }: any) => ({
+    type: id,
+    value: name,
+  }));
 
   return (
     <div>
@@ -28,6 +85,9 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
       <AccommodationSearch
         setComponent={setComponent}
         setSearchData={setSearchData}
+        setSelectedId={setSelectedValue}
+        setSearchResult={setSearchResult}
+        data={result}
       />
       <Container
         maxWidth={"xl"}
@@ -76,13 +136,15 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
               justifyContent: "space-between",
             }}
           >
-            {mostPopularItems.map((item, index) => (
-              <Box sx={{ flex: 1 }} key={item.name}>
+            {mostPopularLocations.map((item: any) => (
+              <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
-                  key={item.name}
-                  city={item.name}
-                  count={item.count}
-                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  city={item?.name}
+                  count={item.properties}
+                  imgUrl={item.imageUrl}
+                  maxHeight={300}
+                  minHeight={300}
                 />
               </Box>
             ))}
@@ -96,13 +158,15 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
               justifyContent: "space-between",
             }}
           >
-            {popularItems.map((item) => (
-              <Box sx={{ flex: 1 }} key={item.name}>
+            {popularLocations.map((item) => (
+              <Box sx={{ flex: 1 }} key={item.id}>
                 <CityCard
-                  key={item.name}
-                  city={item.name}
-                  count={item.count}
-                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  city={item?.name}
+                  count={item.properties}
+                  imgUrl={item.imageUrl}
+                  maxHeight={300}
+                  minHeight={300}
                 />
               </Box>
             ))}
@@ -153,16 +217,20 @@ export const Home = ({ setComponent, setSearchData }: HomeProps) => {
             marginBottom: "5rem",
           }}
         >
-          {accommodationCardData.map((item) => (
-            <Grid item key={item.title}>
+          {popularAccommodations.map((item) => (
+            <Grid item key={item.id}>
               <AccommodationCard
                 setComponent={setComponent}
+                setRecomendationId={setRecomendationId}
+                id={item.id}
                 title={item.title}
-                location={item.location}
+                location={item?.location?.name}
                 price={item.price}
                 categorization={item.categorization}
-                imgUrl={item.imgUrl}
-                key={item.title}
+                imgUrl={
+                  item.imageUrl === "" ? item.location.imageUrl : item.imageUrl
+                }
+                key={item.id}
               />
             </Grid>
           ))}

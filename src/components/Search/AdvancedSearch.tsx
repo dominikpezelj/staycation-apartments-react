@@ -17,12 +17,20 @@ import { SelectField } from "../Form/SelectField";
 import { Profile } from "../Icons/Profile";
 import { Bed } from "../Icons/Bed";
 
-export const AdvancedSearch = (): JSX.Element => {
+type AdvancedSearch = {
+  searchResult: any[];
+  setSearchResult: Function;
+};
+
+export const AdvancedSearch = ({
+  searchResult,
+  setSearchResult,
+}: AdvancedSearch): JSX.Element => {
   const { colors } = useTheme();
 
   const [formValues, setFormValues] = useState({
-    checkIn: "",
-    checkOut: "",
+    checkIn: new Date(),
+    checkOut: new Date(),
     guests: "",
     accommodation: "",
   });
@@ -33,8 +41,36 @@ export const AdvancedSearch = (): JSX.Element => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+
+    const advancedFilter = [searchResult].filter((data: any) => {
+      if (
+        data.accomodation.capacity > formValues.guests &&
+        data.accomodation.type === formValues.accommodation
+      ) {
+        const formCheckIn = moment(formValues.checkIn).format("MM-DD-YYYY");
+        const formCheckOut = moment(formValues.checkOut).format("MM-DD-YYYY");
+        const dataCheckIn = moment(data.checkIn).format("MM-DD-YYYY");
+        const dataCheckOut = moment(data.checkOut).format("MM-DD-YYYY");
+
+        const checkInCondition = moment(formCheckIn).isBetween(
+          dataCheckIn,
+          dataCheckOut
+        );
+        const checkOutCondition = moment(formCheckOut).isBetween(
+          dataCheckIn,
+          dataCheckOut
+        );
+        console.log(checkInCondition);
+        console.log(checkOutCondition);
+        if (!checkInCondition && !checkOutCondition) {
+          alert("free");
+          setSearchResult(data);
+          return data;
+        } else return;
+      }
+    });
   };
+
   const now = moment().format("DD-MM-YYYY");
 
   return (

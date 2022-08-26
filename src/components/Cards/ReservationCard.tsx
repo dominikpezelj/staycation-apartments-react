@@ -11,8 +11,7 @@ type AccommodationDataProps = {
   categorization: number;
   imageUrl: string;
   type: string;
-  location: string;
-  postalCode: string;
+  location: { name: string; postalCode: number };
   price: number;
 };
 export const ReservationCard = ({
@@ -30,16 +29,17 @@ export const ReservationCard = ({
     >
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <Box
-            sx={{
+          <img
+            src={data.imageUrl}
+            style={{
               margin: "1rem",
-              backgroundImage: `url(${data.imageUrl})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               width: "203px",
               height: "210px",
               borderRadius: "4px",
             }}
+            alt={data.title}
           />
         </Grid>
         <Grid item xs={8}>
@@ -63,8 +63,8 @@ export const ReservationCard = ({
               sx={{ marginTop: "23px" }}
             >
               <Typography>{data.type}</Typography>
-              <Typography>{data.location}</Typography>
-              <Typography>{data.postalCode}</Typography>
+              <Typography>{data.location.name}</Typography>
+              <Typography>{data.location.postalCode}</Typography>
               <Typography>EUR {data.price} per day</Typography>
             </Stack>
           </Box>

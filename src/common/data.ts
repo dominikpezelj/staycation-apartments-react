@@ -11,39 +11,39 @@ import ReservationImage from "../assets/images/reservation-card.jpg"
 
 const accommodationTypes = [
   {
-    name: "selectRoom",
+    type: "room",
     value: "Room"
   },
   {
-    name: "selectApartment",
+    type: "apartment",
     value: "Apartment"
   },
   {
-    name: "selectMobileHome",
-    value: "Mobile home"
+    type: "mobileHome",
+    value: "Mobile home" 
   },
 
 ]
 
 const locations = [
   {
-    name:"selectNewYork",
+    type:"selectNewYork",
     value: "New York"
   },
   {
-    name:"selectRome",
+    type:"selectRome",
     value: "Rome"
   },
   {
-    name:"selectLondon",
+    type:"selectLondon",
     value: "London"
   },
   {
-    name:"selectTokyo",
+    type:"selectTokyo",
     value: "Tokyo"
   },
   {
-    name:"selectBarcelona",
+    type:"selectBarcelona",
     value: "Barcelona"
   },
 ]

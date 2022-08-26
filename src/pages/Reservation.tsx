@@ -6,9 +6,23 @@ import { accommodationInfoData } from "../common/data";
 
 type ReservationProps = {
   setComponent: Function;
+  reservationData: ReservationData;
 };
 
-export const Reservation = ({ setComponent }: ReservationProps) => {
+type ReservationData = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  categorization: number;
+  type: string;
+  location: { name: string; postalCode: number };
+  price: number;
+};
+
+export const Reservation = ({
+  setComponent,
+  reservationData,
+}: ReservationProps) => {
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -21,10 +35,10 @@ export const Reservation = ({ setComponent }: ReservationProps) => {
       >
         <Grid container spacing={25} columns={16}>
           <Grid item xs={8}>
-            <ReservationForm />
+            <ReservationForm data={reservationData} />
           </Grid>
           <Grid item xs={8}>
-            <ReservationCard data={accommodationInfoData} />
+            <ReservationCard data={reservationData} />
           </Grid>
         </Grid>
       </Container>

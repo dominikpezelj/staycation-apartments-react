@@ -1,35 +1,75 @@
-import { useState, useEffect } from "react";
+import { Navigation } from "../components/Navigation";
 import {
   Container,
-  Box,
   Typography,
-  Button,
+  Box,
   Stack,
   FormHelperText,
+  InputAdornment,
+  Button,
 } from "@mui/material";
-import { Navigation } from "../components/Navigation";
-import { useTheme } from "@mui/material/styles";
-
-import { InputField } from "../components/Form/InputField";
-import { SelectField } from "../components/Form/SelectField";
-
-import { accommodationTypes } from "../common/data";
+import { useEffect, useState } from "react";
+import { accommodationTypes } from "src/common/data";
+import { InputField } from "src/components/Form/InputField";
 import { RatingField } from "src/components/Form/RatingField";
+import { SelectField } from "src/components/Form/SelectField";
 import { SwitchField } from "src/components/Form/SwitchField";
-
-import InputAdornment from "@mui/material/InputAdornment";
+import { useTheme } from "@mui/material/styles";
+import { Footer } from "src/components/Footer";
 import axios from "axios";
 
-const postAccommodation = "https://devcademy.herokuapp.com/api/Accomodations";
+const getValues = "https://devcademy.herokuapp.com/api/Accomodations/";
 
-type NewPlaceFormProps = {
+type EditPlaceFormProps = {
+  id: string;
   setComponent: Function;
+};
+
+type FormValues = {
+  listingName: string;
+  shortDesc: string;
+  longDesc: string;
+  categorization: number;
+  accommodation: string;
+  capacity: number;
+  price: number;
+  listingImage: string;
+  postalCode: number;
+  location: string;
+  cancelation: boolean;
 };
 
 type FormInputValue = string | number | boolean | null;
 
-export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
+export const EditPlaceForm = ({ setComponent, id }: EditPlaceFormProps) => {
   const { colors } = useTheme();
+
+  useEffect(() => {
+    const getFormValues = async () => {
+      const response = await axios.get(getValues + id);
+
+      if (response.status === 200) {
+        if (response.data) {
+          let data = response.data;
+          setFormValues((values) => ({
+            ...values,
+            listingName: data.title,
+            shortDesc: data.shortDescription,
+            longDesc: data.description,
+            categorization: data.categorization,
+            accommodation: data.type,
+            capacity: data.capacity,
+            price: data.price,
+            listingImage: data.imageUrl,
+            postalCode: data?.location?.postalCode,
+            location: data?.location?.name,
+            cancelation: data.freeCancelation,
+          }));
+        }
+      }
+    };
+    getFormValues();
+  }, []);
 
   const [formValues, setFormValues] = useState({
     listingName: "",
@@ -65,6 +105,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     setIsTouched((values) => ({ ...values, [event.target.name]: true }));
   };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
@@ -74,7 +115,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
       formValues.location
     ) {
       try {
-        let response = await axios.post(postAccommodation, {
+        let response = await axios.put(getValues + id, {
           title: formValues.listingName,
           subtitle: "null",
           description: formValues.longDesc,
@@ -96,17 +137,9 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
           },
           capacity: Number(formValues.capacity),
         });
-      } catch (error: any) {}
-    } else return;
+      } catch (error) {}
+    }
   };
-
-  useEffect(() => {
-    Object.entries(formValues).map(([key, value]) => {
-      if (value === "" || value === null)
-        setErrMessages((values) => ({ ...values, [key]: true }));
-      else setErrMessages((values) => ({ ...values, [key]: false }));
-    });
-  }, [formValues]);
   return (
     <div>
       <Navigation setComponent={setComponent} />
@@ -125,7 +158,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
             fontSize: "34px",
           }}
         >
-          Add new place
+          Edit place
         </Typography>
         <Box sx={{ width: "40%", marginTop: "3rem" }}>
           <form onSubmit={handleSubmit}>
@@ -304,6 +337,7 @@ export const NewPlaceForm = ({ setComponent }: NewPlaceFormProps) => {
           </form>
         </Box>
       </Container>
+      <Footer />
     </div>
   );
 };
